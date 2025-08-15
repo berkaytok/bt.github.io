@@ -28,7 +28,7 @@
       </div>
       <textarea class="form-textarea" placeholder="Project details — location, timeline, specific requirements" bind:value={message} rows="6" required></textarea>
       <div style="margin-top:12px; display:flex; gap:12px">
-        <button class="btn primary" type="submit">Email me</button>
+        <button class="btn primary" type="submit">Submit</button>
         <a class="btn" href="#/home">Back</a>
       </div>
     </form>
