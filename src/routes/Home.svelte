@@ -88,11 +88,11 @@
         <div class="stat-label">Flights Completed</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">50+</div>
+        <div class="stat-number">20+</div>
         <div class="stat-label">Happy Clients</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">3</div>
+        <div class="stat-number">10</div>
         <div class="stat-label">Years Experience</div>
       </div>
     </div>
@@ -109,11 +109,11 @@
     </div>
 
     <div class="hero-credentials">
-      <span class="credential-item">MFA Media Production</span>
+      <span class="credential-item">MFA in Multimedia</span>
       <span class="credential-divider">•</span>
-      <span class="credential-item">MS Geospatial Data Science</span>
+      <span class="credential-item">MS in Geospatial Data Science</span>
       <span class="credential-divider">•</span>
-      <span class="credential-item">Fully Insured</span>
+      <span class="credential-item">Fully Insured Operations</span>
     </div>
   </div>
 
@@ -179,7 +179,7 @@
     </div>
   </div>
 </section>
-
+<!-- 
 <section class="testimonials-section {testimonialsVisible ? 'reveal visible' : 'reveal'}">
   <div class="section-header">
     <h2>Client Success Stories</h2>
@@ -224,7 +224,7 @@
     </div>
   </div>
 </section>
-
+ -->
 <section class="cta-section reveal">
   <div class="cta-content">
     <h2>Ready to Elevate Your Project?</h2>
