@@ -1,17 +1,20 @@
 <script>
   import Background from './lib/Background.svelte'
   import Home from './routes/Home.svelte'
-  import Service from './routes/Service.svelte'
+  import Geospatial from './routes/Geospatial.svelte'
+  import Cinematography from './routes/Cinematography.svelte'
+  import Agriculture from './routes/Agriculture.svelte'
+  import Inspections from './routes/Inspections.svelte'
   import Contact from './routes/Contact.svelte'
   import Research from './routes/Research.svelte'
   import { route } from './lib/route.js'
 
   const routes = {
     'home': Home,
-    'geospatial': Service,
-    'cinematography': Service,
-    'agriculture': Service,
-    'inspections': Service,
+    'geospatial': Geospatial,
+    'cinematography': Cinematography,
+    'agriculture': Agriculture,
+    'inspections': Inspections,
     'research': Research,
     'contact': Contact
   }
@@ -73,7 +76,7 @@
 
   <main class="container">
     {#if routes[current]}
-      <svelte:component this={routes[current]} route={current} />
+      <svelte:component this={routes[current]} />
     {:else}
       <Home />
     {/if}

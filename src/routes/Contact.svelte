@@ -7,7 +7,31 @@
   let message = '';
   
   onMount(() => {
-    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    // Intersection Observer for scroll-triggered animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all elements with reveal classes
+    document.querySelectorAll('.reveal').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Staggered animation for capability items
+    document.querySelectorAll('.capability-item').forEach((el, index) => {
+      el.style.transitionDelay = `${index * 100}ms`;
+    });
+
+    return () => observer.disconnect();
   });
 
   // Contact page colors (amber, red, purple theme)
@@ -55,7 +79,7 @@
     background: linear-gradient(135deg, var(--section-primary), var(--section-primary-dark));
     border-color: var(--section-primary);
     box-shadow: 0 8px 32px color-mix(in srgb, var(--section-primary) 25%, transparent);
-    transition: all 0.3s ease;
+    transition: all 1.5s ease-in-out;
   }
 
   .service-hero :global(.btn.primary:hover) {

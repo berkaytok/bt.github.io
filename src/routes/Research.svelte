@@ -216,7 +216,7 @@
     background: linear-gradient(135deg, var(--section-primary), var(--section-primary-dark));
     border-color: var(--section-primary);
     box-shadow: 0 8px 32px color-mix(in srgb, var(--section-primary) 25%, transparent);
-    transition: all 0.3s ease;
+    transition: all 1.5s ease-in-out;
   }
 
   .service-hero :global(.btn.primary:hover) {
@@ -247,7 +247,7 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
     padding: 32px;
-    transition: all 0.3s ease;
+    transition: all 1.5s ease-in-out;
   }
 
   .research-card:hover {
