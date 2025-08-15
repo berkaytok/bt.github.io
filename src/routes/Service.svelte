@@ -46,28 +46,79 @@
   $: page = data[route] || data.geospatial;
 
   onMount(() => {
-    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    // Intersection Observer for scroll-triggered animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all elements with reveal classes
+    document.querySelectorAll('.reveal').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Staggered animation for capability items
+    document.querySelectorAll('.capability-item').forEach((el, index) => {
+      el.style.transitionDelay = `${index * 100}ms`;
+    });
+
+    return () => observer.disconnect();
   });
 
   function go(to) { location.hash = `#/${to}`; }
 </script>
 
-<section class="section reveal">
-  <div class="card">
-    <h2>{page.title}</h2>
-    <p class="lead">{page.intro}</p>
+<section class="service-hero">
+  <div class="service-content">
+    <div class="service-badge reveal fade-up">
+      Professional Services
+    </div>
+    
+    <h1 class="service-title reveal fade-up">{page.title}</h1>
+    
+    <p class="service-description reveal fade-up">{page.intro}</p>
 
-    <ul style="margin-top:14px">
-      {#each page.bullets as b}
-        <li class="small-meta" style="margin:10px 0;">• {b}</li>
+    <div class="capabilities-grid reveal fade-up">
+      {#each page.bullets as capability, i}
+        <div class="capability-item reveal fade-up" style="animation-delay: {(i + 1) * 100}ms">
+          <div class="capability-icon">✓</div>
+          <span>{capability}</span>
+        </div>
       {/each}
-    </ul>
-
-    <div style="margin-top:18px; display:flex; gap:12px">
-      <button class="btn primary" onclick={() => go('contact')}>Get a quote</button>
-      <button class="btn" onclick={() => go('home')}>Back</button>
     </div>
 
-    <div style="margin-top:12px" class="small-meta">Certifications: Part 107 FAA • MFA Media Production • MS Geospatial Data Science</div>
+    <div class="service-actions reveal fade-up">
+      <button class="btn primary large" onclick={() => go('contact')}>
+        <span class="btn-icon">💬</span>
+        Start Your Project
+      </button>
+      <button class="btn secondary" onclick={() => go('home')}>
+        <span class="btn-icon">←</span>
+        Back to Overview
+      </button>
+    </div>
+
+    <div class="credentials-bar reveal fade-up">
+      <div class="credential-item">
+        <span class="credential-icon">🎓</span>
+        <span>MFA Media Production</span>
+      </div>
+      <div class="credential-item">
+        <span class="credential-icon">🌍</span>
+        <span>MS Geospatial Data Science</span>
+      </div>
+      <div class="credential-item">
+        <span class="credential-icon">✈️</span>
+        <span>Part 107 FAA Certified</span>
+      </div>
+    </div>
   </div>
 </section>

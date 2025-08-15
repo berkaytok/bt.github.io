@@ -1,6 +1,5 @@
 <script>
   import Background from './lib/Background.svelte'
-  import FluidBlob from './lib/FluidBlob.svelte'
   import Home from './routes/Home.svelte'
   import Service from './routes/Service.svelte'
   import Contact from './routes/Contact.svelte'
@@ -47,11 +46,10 @@
 
 <svelte:window bind:scrollY />
 
-<FluidBlob />
 <Background />
 
 <div class="content-wrapper">
-  <header class="header" on:mousemove={handleMove}>
+  <header class="header" on:mousemove={handleMove} role="application" aria-label="Site header with interactive background effects">
     <div class="container site-row">
       <div class="brand">
         <div class="logo">BT</div>

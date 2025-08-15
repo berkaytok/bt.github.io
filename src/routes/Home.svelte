@@ -40,19 +40,19 @@
     { 
       id: 'geospatial', 
       title: 'Geospatial Data Science', 
-      desc: 'Advanced remote sensing, multispectral analysis, and precision mapping solutions.',
+      desc: 'Sub-orbital multispectral remote sensing data acquisition and analysis',
       icon: '🛰️'
     },
     { 
       id: 'cinematography', 
       title: 'Aerial Cinematography', 
-      desc: 'Cinematic 4K footage and high-resolution photography for media production.',
+      desc: '8 years of experience building and flying FPV drones for media production',
       icon: '🎬'
     },
     { 
       id: 'agriculture', 
       title: 'Agricultural Solutions', 
-      desc: 'NDVI mapping, crop health analysis, and precision agriculture insights.',
+      desc: 'Vegetation indices, crop health analysis, aerial spraying and seeding',
       icon: '🌾'
     },
     { 
@@ -72,8 +72,8 @@
     </div>
     
     <h1 class="hero-title">
-      <span class="title-highlight">Professional</span><br>
-      <span class="title-main">Drone & GIS</span><br>
+      <span class="title-highlight">FPV & Autonomous</span><br>
+      <span class="title-main">sUAS & Geospatial Analytics/GIS</span><br>
       <span class="title-accent">Services</span>
     </h1>
     

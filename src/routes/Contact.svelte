@@ -22,11 +22,11 @@
     <p class="lead">Tell me about your project — location, timeline, what you need (e.g. mapping / spraying / film day) and I’ll follow up with availability and a project estimate.</p>
 
     <form on:submit|preventDefault={submit}>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-        <input placeholder="Your name" bind:value={name} style="padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit" required />
-        <input placeholder="Email" type="email" bind:value={email} style="padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit" required />
+      <div class="form-grid">
+        <input class="form-input" placeholder="Your name" bind:value={name} required />
+        <input class="form-input" placeholder="Email" type="email" bind:value={email} required />
       </div>
-      <textarea placeholder="Project details" bind:value={message} rows="6" style="width:100%; margin-top:12px; padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit" required></textarea>
+      <textarea class="form-textarea" placeholder="Project details — location, timeline, specific requirements" bind:value={message} rows="6" required></textarea>
       <div style="margin-top:12px; display:flex; gap:12px">
         <button class="btn primary" type="submit">Email me</button>
         <a class="btn" href="#/home">Back</a>
