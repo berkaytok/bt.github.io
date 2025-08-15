@@ -79,7 +79,7 @@
     
     <p class="hero-description">
       Combining advanced aerial cinematography with cutting-edge geospatial analysis. 
-      From agricultural monitoring to precision surveying — delivering data-driven insights from above.
+      From agricultural monitoring to precision surveying delivering data-driven insights from above.
     </p>
     
     <div class="hero-stats fade-up {statsVisible ? 'visible' : ''}">
