@@ -34,7 +34,7 @@
     </form>
 
     <div style="margin-top:18px" class="small-meta">
-      Prefer a direct email? hello@berkaytok.com — (replace with your working address). Insured operations. FAA Part 107.
+      Prefer a direct email? hello@berkaytok.com. Insured operations. FAA Part 107.
     </div>
   </div>
 </section>
