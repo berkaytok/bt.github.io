@@ -153,6 +153,8 @@ a { color: var(--accent); text-decoration: none; }
   -webkit-text-fill-color: transparent;
   background-clip: text;
   display: block;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 .hero-description {
@@ -778,6 +780,7 @@ a { color: var(--accent); text-decoration: none; }
   margin: 0 0 32px;
   line-height: 1.1;
   letter-spacing: -0.02em;
+  transition: color 1.5s ease-in-out;
 }
 
 .service-description {

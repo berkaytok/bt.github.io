@@ -150,32 +150,24 @@
         <span>🛡️</span>
       </div>
       <h3>Certified & Insured</h3>
-      <p>Part 107 FAA certified with comprehensive liability coverage. Licensed for commercial operations nationwide.</p>
+      <p>Part 107 FAA certified with comprehensive liability coverage. Licensed for commercial operations nationwide</p>
       <div class="credential-badge">FAA Part 107</div>
     </div>
     <div class="credential-card stagger-child">
       <div class="credential-icon">
         <span>🎓</span>
       </div>
-      <h3>Advanced Analytics</h3>
-      <p>MS in Geospatial Data Science provides cutting-edge analysis capabilities and professional-grade insights.</p>
-      <div class="credential-badge">MS Geospatial</div>
+      <h3>Geospatial Analytics</h3>
+      <p>Cutting-edge geospatial analysis, real-time data dashboards, geospatial machine and deep learning solutions</p>
+      <div class="credential-badge">Geospatial Analytics</div>
     </div>
     <div class="credential-card stagger-child">
       <div class="credential-icon">
         <span>🎨</span>
       </div>
-      <h3>Creative Excellence</h3>
-      <p>MFA in Media Production ensures cinematic quality. Artistic vision meets technical precision.</p>
-      <div class="credential-badge">MFA Media</div>
-    </div>
-    <div class="credential-card stagger-child">
-      <div class="credential-icon">
-        <span>⚡</span>
-      </div>
-      <h3>Rapid Delivery</h3>
-      <p>Quick turnaround times without compromising quality. Efficient workflows and project management.</p>
-      <div class="credential-badge">24-48hr</div>
+      <h3>Creative Approach</h3>
+      <p>Acrobatic FPV cinelifters and cinewhoops for lifting your choice of camera safely or fly for events with class 1 drones</p>
+      <div class="credential-badge">Hire us for your set</div>
     </div>
   </div>
 </section>

@@ -1,6 +1,8 @@
 <script>
   import { onMount, onDestroy } from 'svelte';
 
+  export let currentRoute = 'home';
+
   let canvas;
   let ctx;
   let points = [];
@@ -11,14 +13,97 @@
   let frameId;
 
   // --- Configuration ---
-  const NUM_POINTS = 200;
+  const NUM_POINTS = 50;
   const POINT_RADIUS = 3;
   const CONNECTION_DISTANCE = 500;
   const MOUSE_INFLUENCE_RADIUS = 250;
   const MOUSE_SMOOTHING = 0.4;
   const MAX_VELOCITY = 10;
   const MOUSE_FORCE = 0.1;
+
+  // Color schemes for different sections
+  const colorSchemes = {
+    home: {
+      point: 'rgba(255, 255, 255, 0.6)',
+      line: 'rgba(255, 255, 255, 0.25)'
+    },
+    geospatial: {
+      point: 'rgba(200, 167, 13, 0.6)',
+      line: 'rgba(184, 67, 13, 0.25)'
+    },
+    cinematography: {
+      point: 'rgba(45, 212, 191, 0.6)',
+      line: 'rgba(20, 184, 166, 0.25)'
+    },
+    agriculture: {
+      point: 'rgba(34, 197, 94, 0.6)',
+      line: 'rgba(22, 163, 74, 0.25)'
+    },
+    inspections: {
+      point: 'rgba(99, 102, 241, 0.6)',
+      line: 'rgba(79, 70, 229, 0.25)'
+    },
+    research: [
+      { point: 'rgba(168, 85, 247, 0.6)', line: 'rgba(147, 51, 234, 0.25)' },
+      { point: 'rgba(236, 72, 153, 0.6)', line: 'rgba(219, 39, 119, 0.25)' },
+      { point: 'rgba(59, 130, 246, 0.6)', line: 'rgba(37, 99, 235, 0.25)' }
+    ],
+    contact: [
+      { point: 'rgba(245, 158, 11, 0.6)', line: 'rgba(217, 119, 6, 0.25)' },
+      { point: 'rgba(239, 68, 68, 0.6)', line: 'rgba(220, 38, 38, 0.25)' },
+      { point: 'rgba(139, 92, 246, 0.6)', line: 'rgba(124, 58, 237, 0.25)' }
+    ]
+  };
   // --- End Configuration ---
+
+  // Current color values (will be updated smoothly)
+  let currentPointColor = { r: 255, g: 255, b: 255, a: 0.6 };
+  let currentLineColor = { r: 255, g: 255, b: 255, a: 0.25 };
+  let targetPointColor = { r: 255, g: 255, b: 255, a: 0.6 };
+  let targetLineColor = { r: 255, g: 255, b: 255, a: 0.25 };
+
+  // Extract RGBA values from color string
+  function parseRGBA(colorStr) {
+    const matches = colorStr.match(/rgba?\(([^)]+)\)/);
+    if (!matches) return { r: 255, g: 255, b: 255, a: 1 };
+    const values = matches[1].split(',').map(n => parseFloat(n.trim()));
+    return { r: values[0], g: values[1], b: values[2], a: values[3] || 1 };
+  }
+
+  // Update target colors when route changes
+  $: {
+    const scheme = colorSchemes[currentRoute] || colorSchemes.home;
+    const colors = Array.isArray(scheme) ? scheme[0] : scheme;
+    targetPointColor = parseRGBA(colors.point);
+    targetLineColor = parseRGBA(colors.line);
+  }
+
+  // Smooth color interpolation (like CSS transitions)
+  function lerpColor(current, target, speed = 0.1) {
+    return {
+      r: current.r + (target.r - current.r) * speed,
+      g: current.g + (target.g - current.g) * speed,
+      b: current.b + (target.b - current.b) * speed,
+      a: current.a + (target.a - current.a) * speed
+    };
+  }
+
+  // Get colors for current section
+  function getColors(pointIndex = 0) {
+    const scheme = colorSchemes[currentRoute] || colorSchemes.home;
+    
+    if (Array.isArray(scheme)) {
+      // For research/contact sections with multiple colors
+      const colorIndex = pointIndex % scheme.length;
+      return scheme[colorIndex];
+    }
+    
+    // Use smoothly interpolated colors for single-color schemes
+    return {
+      point: `rgba(${Math.round(currentPointColor.r)}, ${Math.round(currentPointColor.g)}, ${Math.round(currentPointColor.b)}, ${currentPointColor.a})`,
+      line: `rgba(${Math.round(currentLineColor.r)}, ${Math.round(currentLineColor.g)}, ${Math.round(currentLineColor.b)}, ${currentLineColor.a})`
+    };
+  }
 
   // Creates the constellation points
   function createPoints() {
@@ -67,7 +152,7 @@
     ctx.globalCompositeOperation = 'lighter';
 
     // Update and draw points
-    points.forEach(point => {
+    points.forEach((point, index) => {
       const dx = mouseX - point.x;
       const dy = mouseY - point.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
@@ -110,10 +195,11 @@
       point.vx *= 0.965;
       point.vy *= 0.965;
 
-      // Draw the point
+      // Draw the point with dynamic color
+      const colors = getColors(index);
       ctx.beginPath();
       ctx.arc(point.x, point.y, POINT_RADIUS, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(200, 167, 13, 0.5)';
+      ctx.fillStyle = colors.point;
       ctx.fill();
     });
 
@@ -128,11 +214,22 @@
         if (dist < CONNECTION_DISTANCE) {
           const opacity = 1 - dist / CONNECTION_DISTANCE;
           
+          // Use colors from first point for line
+          const colors1 = getColors(i);
+          
+          // Extract RGBA values and blend if colors are different
+          let lineColor = colors1.line;
+          if (Array.isArray(colorSchemes[currentRoute])) {
+            // For multi-color sections, use a blended approach
+            const baseOpacity = opacity * 0.25;
+            lineColor = colors1.line.replace(/[\d\.]+\)$/, `${baseOpacity})`);
+          }
+          
           // Draw the line
           ctx.beginPath();
           ctx.moveTo(p1.x, p1.y);
           ctx.lineTo(p2.x, p2.y);
-          ctx.strokeStyle = `rgba(184, 67, 13, ${opacity * 0.25})`;
+          ctx.strokeStyle = lineColor;
           ctx.stroke();
         }
       }
@@ -144,11 +241,15 @@
 
   // The main animation loop
   function animate() {
+    // Smooth color transitions (similar to CSS ease-in-out)
+    currentPointColor = lerpColor(currentPointColor, targetPointColor, 0.05);
+    currentLineColor = lerpColor(currentLineColor, targetLineColor, 0.05);
+    
     draw();
     
     // Slow down mouse velocity
-    mouseVelX *= 1.0001;
-    mouseVelY *= 1.0001;
+    mouseVelX *= 0.965;
+    mouseVelY *= 0.965;
     
     frameId = requestAnimationFrame(animate);
   }

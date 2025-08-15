@@ -46,7 +46,7 @@
 
 <svelte:window bind:scrollY />
 
-<Background />
+<Background currentRoute={current} />
 
 <div class="content-wrapper">
   <header class="header" on:mousemove={handleMove} role="application" aria-label="Site header with interactive background effects">

@@ -42,8 +42,37 @@
     }
   };
 
+  // Color schemes matching background colors
+  const sectionColors = {
+    geospatial: {
+      title: '#c8a70d',
+      primary: '#c8a70d',
+      primaryDark: '#b8970b',
+      accent: '#c8a70d'
+    },
+    cinematography: {
+      title: '#2dd4bf',
+      primary: '#2dd4bf',
+      primaryDark: '#14b8a6',
+      accent: '#2dd4bf'
+    },
+    agriculture: {
+      title: '#22c55e',
+      primary: '#22c55e',
+      primaryDark: '#16a34a',
+      accent: '#22c55e'
+    },
+    inspections: {
+      title: '#6366f1',
+      primary: '#6366f1',
+      primaryDark: '#4f46e5',
+      accent: '#6366f1'
+    }
+  };
+
   // Update page when route changes
   $: page = data[route] || data.geospatial;
+  $: colors = sectionColors[route] || sectionColors.geospatial;
 
   onMount(() => {
     // Intersection Observer for scroll-triggered animations
@@ -76,49 +105,82 @@
   function go(to) { location.hash = `#/${to}`; }
 </script>
 
-<section class="service-hero">
+<section class="service-hero" style="--section-primary: {colors.primary}; --section-primary-dark: {colors.primaryDark}; --section-accent: {colors.accent};">
   <div class="service-content">
-    <div class="service-badge reveal fade-up">
-      Professional Services
+    <!-- Main Service Info Glass Pane -->
+    <div class="card reveal fade-up" style="margin-bottom: 32px;">
+      <div class="service-badge">
+        Professional Services
+      </div>
+      
+      <h1 class="service-title" style="color: {colors.title}">{page.title}</h1>
+      
+      <p class="service-description">{page.intro}</p>
     </div>
-    
-    <h1 class="service-title reveal fade-up">{page.title}</h1>
-    
-    <p class="service-description reveal fade-up">{page.intro}</p>
 
-    <div class="capabilities-grid reveal fade-up">
-      {#each page.bullets as capability, i}
-        <div class="capability-item reveal fade-up" style="animation-delay: {(i + 1) * 100}ms">
-          <div class="capability-icon">✓</div>
-          <span>{capability}</span>
+    <!-- Capabilities Glass Pane -->
+    <div class="card reveal fade-up" style="margin-bottom: 32px;">
+      <h2 style="margin: 0 0 24px; font-size: 24px; color: var(--text-primary);">Key Capabilities</h2>
+      <div class="capabilities-grid">
+        {#each page.bullets as capability, i}
+          <div class="capability-item reveal fade-up" style="animation-delay: {(i + 1) * 100}ms">
+            <div class="capability-icon">✓</div>
+            <span>{capability}</span>
+          </div>
+        {/each}
+      </div>
+    </div>
+
+    <!-- Actions Glass Pane -->
+    <div class="card reveal fade-up" style="margin-bottom: 32px;">
+      <div class="service-actions">
+        <button class="btn primary large" onclick={() => go('contact')}>
+          <span class="btn-icon">💬</span>
+          Start Your Project
+        </button>
+        <button class="btn secondary" onclick={() => go('home')}>
+          <span class="btn-icon">←</span>
+          Back to Overview
+        </button>
+      </div>
+    </div>
+
+    <!-- Credentials Glass Pane -->
+    <div class="card reveal fade-up">
+      <h2 style="margin: 0 0 24px; font-size: 24px; color: var(--text-primary);">Credentials & Qualifications</h2>
+      <div class="credentials-bar">
+        <div class="credential-item">
+          <span class="credential-icon">🎓</span>
+          <span>MFA Media Production</span>
         </div>
-      {/each}
-    </div>
-
-    <div class="service-actions reveal fade-up">
-      <button class="btn primary large" onclick={() => go('contact')}>
-        <span class="btn-icon">💬</span>
-        Start Your Project
-      </button>
-      <button class="btn secondary" onclick={() => go('home')}>
-        <span class="btn-icon">←</span>
-        Back to Overview
-      </button>
-    </div>
-
-    <div class="credentials-bar reveal fade-up">
-      <div class="credential-item">
-        <span class="credential-icon">🎓</span>
-        <span>MFA Media Production</span>
-      </div>
-      <div class="credential-item">
-        <span class="credential-icon">🌍</span>
-        <span>MS Geospatial Data Science</span>
-      </div>
-      <div class="credential-item">
-        <span class="credential-icon">✈️</span>
-        <span>Part 107 FAA Certified</span>
+        <div class="credential-item">
+          <span class="credential-icon">🌍</span>
+          <span>MS Geospatial Data Science</span>
+        </div>
+        <div class="credential-item">
+          <span class="credential-icon">✈️</span>
+          <span>Part 107 FAA Certified</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  /* Section-specific styling using CSS custom properties */
+  .service-hero :global(.btn.primary) {
+    background: linear-gradient(135deg, var(--section-primary), var(--section-primary-dark));
+    border-color: var(--section-primary);
+    box-shadow: 0 8px 32px color-mix(in srgb, var(--section-primary) 25%, transparent);
+    transition: all 0.3s ease;
+  }
+
+  .service-hero :global(.btn.primary:hover) {
+    box-shadow: 0 12px 40px color-mix(in srgb, var(--section-primary) 35%, transparent);
+  }
+
+  .service-hero :global(.capability-icon) {
+    background: var(--section-accent);
+    transition: background-color 1.5s ease-in-out;
+  }
+</style>
