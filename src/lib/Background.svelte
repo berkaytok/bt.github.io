@@ -173,14 +173,9 @@
         point.vy += (dy / dist) * force * mouseSpeed * 0.1;
       }
 
-      // Pull back to original position with variable strength
-      const displacement = Math.sqrt(
-        (point.x - point.baseX) ** 2 + 
-        (point.y - point.baseY) ** 2
-      );
-      const springForce = 0.0020 + (displacement / 1000) * 0.001;
-      point.vx += (point.baseX - point.x) * springForce;
-      point.vy += (point.baseY - point.y) * springForce;
+      // Add gentle floating motion for free movement
+      point.vx += (Math.random() - 0.5) * 0.02;
+      point.vy += (Math.random() - 0.5) * 0.02;
 
       // Limit velocity
       const speed = Math.sqrt(point.vx * point.vx + point.vy * point.vy);
@@ -203,8 +198,7 @@
       ctx.fill();
     });
 
-    // Draw connecting lines
-    ctx.lineWidth = 0.3;
+    // Draw connecting lines with enhanced fluid effects
     for (let i = 0; i < points.length; i++) {
       for (let j = i + 1; j < points.length; j++) {
         const p1 = points[i];
@@ -225,10 +219,31 @@
             lineColor = colors1.line.replace(/[\d\.]+\)$/, `${baseOpacity})`);
           }
           
-          // Draw the line
+          // Create fluid curve with gravity sag
+          const midX = (p1.x + p2.x) * 0.5;
+          const midY = (p1.y + p2.y) * 0.5;
+          
+          // Add gravity sag - lines droop downward
+          const gravitySag = dist * 0.08; // Gravity effect based on distance
+          const curvature = dist * 0.25; // Base curve amount
+          const perpX = -(p2.y - p1.y) / dist; // Perpendicular direction
+          const perpY = (p2.x - p1.x) / dist;
+          
+          // Control point with wave motion and gravity (slower movement)
+          const timeOffset = Date.now() * 0.0008 + i + j; // Slowed down from 0.002
+          const waveAmount = Math.sin(timeOffset) * 1.5;
+          const controlX = midX + perpX * curvature * waveAmount;
+          const controlY = midY + perpY * curvature * waveAmount + gravitySag; // Add gravity
+          
+          // Variable thickness based on curve intensity and distance
+          const baseThickness = 0.2;
+          const thicknessFactor = 1 + Math.abs(waveAmount) * 0.5 + (1 - opacity) * 0.1;
+          ctx.lineWidth = baseThickness * thicknessFactor;
+          
+          // Draw curved line
           ctx.beginPath();
           ctx.moveTo(p1.x, p1.y);
-          ctx.lineTo(p2.x, p2.y);
+          ctx.quadraticCurveTo(controlX, controlY, p2.x, p2.y);
           ctx.strokeStyle = lineColor;
           ctx.stroke();
         }
