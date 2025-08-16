@@ -66,14 +66,16 @@
     </div>
     
     <h1 class="hero-title">
-      <span class="title-highlight" style="background: linear-gradient(135deg, #14b8a6, #f97316, #dc2626); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">FPV & Autonomous</span><br>
-      <span class="title-main" style="background: linear-gradient(135deg, #d97706, #fbbf24, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">sUAS & Geospatial Analytics/GIS</span><br>
-      <span class="title-accent" style="background: linear-gradient(135deg, #10b981, #3b82f6, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Services</span>
+      <span class="title-main" style="background: linear-gradient(135deg, #14b8a6, #f97316, #dc2626, #d97706, #fbbf24, #10b981, #3b82f6, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+        Professional Drone &<br>
+        Geospatial Intelligence<br>
+        Solutions
+      </span>
     </h1>
     
     <p class="hero-description">
-      Combining advanced aerial cinematography with cutting-edge geospatial analysis. 
-      From agricultural monitoring to precision surveying delivering data-driven insights from above.
+      From cinematic FPV sequences to precision agricultural monitoring—delivering actionable aerial insights 
+      with FAA-certified expertise and cutting-edge geospatial analytics.
     </p>
     
     <div class="hero-stats fade-up {statsVisible ? 'visible' : ''}">

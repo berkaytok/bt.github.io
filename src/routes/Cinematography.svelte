@@ -5,8 +5,9 @@
     title: 'Aerial Cinematography',
     intro: 'High-end aerial movie work: stabilized cinematic platforms, FPV acro for dynamic scenes, and end-to-end production delivery.',
     capabilities: [
-      'Cinematic gimballed platforms & HDR captures',
+      'Cinematic gimballed platforms & 10-bit 4:2:2 log footage capture',
       'FPV acrobatic sequences for dynamic shots',
+      'Cinelifters and cinewhoops for specialized filming',
       'Color grading and deliverables for broadcast'
     ]
   };

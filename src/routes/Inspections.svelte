@@ -7,7 +7,8 @@
     capabilities: [
       'High-resolution imagery & thermal overlay',
       'Annotated deliverable reports with geotags',
-      'Safety-first flight procedures and checklists'
+      'Safety-first flight procedures and checklists',
+      'Multi-spectral asset condition monitoring'
     ]
   };
 

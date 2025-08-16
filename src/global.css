@@ -1,5 +1,5 @@
 :root {
-  /* Apple-inspired black theme */
+  /* Black theme */
   --bg: #000000;           /* pure black */
   --panel: #1c1c1e;        /* dark gray panel */
   --card: #1c1c1e;         /* match panel */
@@ -35,6 +35,12 @@ html, body, #app {
   background: var(--bg);
   color: var(--text-primary);
 }
+
+/* Prevent layout shift when scrollbar appears/disappears */
+html {
+  scrollbar-gutter: stable;
+  overflow-y: scroll; /* Always show scrollbar space */
+}
 a { color: var(--accent); text-decoration: none; }
 .container { max-width: 1100px; margin: 0 auto; padding: 28px; }
 
@@ -68,12 +74,6 @@ a { color: var(--accent); text-decoration: none; }
   align-items: center;
   font-weight: 600;
   letter-spacing: 0.6px;
-  transition: all 0.3s ease;
-}
-
-.brand:hover {
-  background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-  box-shadow: 0 4px 20px rgba(14, 105, 128, 0.15);
 }
 
 .logo {
@@ -160,12 +160,22 @@ a { color: var(--accent); text-decoration: none; }
   box-shadow: 0 4px 20px rgba(14, 105, 128, 0.15);
 }
 
+/* Zen Zone link - invisible until hovered */
+.nav a.zen-zone-link {
+  color: transparent;
+  transition: color 0.3s ease;
+}
+
+.nav a.zen-zone-link:hover {
+  color: var(--text-primary);
+}
+
 .hero {
   display: grid;
   grid-template-columns: 1fr 420px;
-  gap: 40px;
+  gap: 1px;
   align-items: start;
-  padding: 80px 0 120px;
+  padding: 40px 0 120px;
   min-height: 70vh;
   position: relative;
   transform: translateY(calc(var(--scroll-y, 0px) * -0.1));
@@ -194,7 +204,7 @@ a { color: var(--accent); text-decoration: none; }
 .hero-title {
   font-size: 52px;
   margin: 0 0 24px;
-  line-height: 0.75;
+  line-height: 1.1;
   font-weight: 800;
   letter-spacing: -0.02em;
 }
@@ -202,7 +212,7 @@ a { color: var(--accent); text-decoration: none; }
 .title-highlight {
   color: var(--accent-light);
   font-weight: 600;
-  font-size: 0.65em;
+  font-size: 0.75em;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   display: block;
@@ -377,6 +387,15 @@ a { color: var(--accent); text-decoration: none; }
   border: 1px solid rgba(255,255,255,0.1);
   box-shadow: 0 8px 32px rgba(0,0,0,0.4); /* controls the shadow for both CTA and credentials sections */
   backdrop-filter: blur(2px);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+  border-color: rgba(255,255,255,0.2);
+  backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.05);
 }
 
 .service-list {

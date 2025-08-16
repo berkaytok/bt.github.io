@@ -7,7 +7,8 @@
     capabilities: [
       'Autonomous spraying & targeted application',
       'Prescription maps for variable rate operations',
-      'Frequent flights for time-series monitoring'
+      'Frequent flights for time-series monitoring',
+      'High resolution vegetation indices, rain or shine!'
     ]
   };
 

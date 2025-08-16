@@ -10,7 +10,8 @@
     'agriculture': () => import('./routes/Agriculture.svelte'),
     'inspections': () => import('./routes/Inspections.svelte'),
     'research': () => import('./routes/Research.svelte'),
-    'contact': () => import('./routes/Contact.svelte')
+    'contact': () => import('./routes/Contact.svelte'),
+    'zen-zone': () => import('./routes/ZenZone.svelte')
   }
 
   let currentComponent = Home
@@ -75,8 +76,13 @@
 
 <svelte:window bind:scrollY />
 
+{#if current !== 'zen-zone'}
 <Background currentRoute={current} />
+{/if}
 
+{#if current === 'zen-zone'}
+  <svelte:component this={currentComponent} />
+{:else}
 <div class="content-wrapper">
   <header class="header" on:mousemove={handleMove} role="application" aria-label="Site header with interactive background effects">
     <div class="container site-row">
@@ -96,6 +102,7 @@
         <a href="#/inspections" on:click|preventDefault={() => go('inspections')}>Inspections</a>
         <a href="#/research" on:click|preventDefault={() => go('research')}>Research</a>
         <a href="#/contact" on:click|preventDefault={() => go('contact')}>Contact</a>
+        <a href="#/zen-zone" on:click|preventDefault={() => go('zen-zone')} class="zen-zone-link">Zen Zone</a>
       </nav>
     </div>
   </header>
@@ -112,6 +119,7 @@
     </footer>
   </main>
 </div>
+{/if}
 
 <style>
   .content-wrapper {
