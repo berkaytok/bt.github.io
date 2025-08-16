@@ -58,7 +58,7 @@
         Academic Services
       </div>
       
-      <h1 class="service-title" style="background: linear-gradient(135deg, #a855f7, #ec4899, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">{researchData.title}</h1>
+      <h1 class="service-title" style="background: linear-gradient(135deg, #d97706, #f59e0b, #9ca3af); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">{researchData.title}</h1>
       
       <p class="service-description">{researchData.intro}</p>
     </div>

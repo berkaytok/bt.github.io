@@ -57,7 +57,7 @@
         Professional Services
       </div>
       
-      <h1 class="service-title" style="background: linear-gradient(135deg, #06b6d4, #2dd4bf, #0891b2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">{cinematographyData.title}</h1>
+      <h1 class="service-title" style="background: linear-gradient(135deg, #14b8a6, #f97316, #dc2626); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">{cinematographyData.title}</h1>
       
       <p class="service-description">{cinematographyData.intro}</p>
     </div>

@@ -57,7 +57,7 @@
         Professional Services
       </div>
       
-      <h1 class="service-title" style="background: linear-gradient(135deg, #8b5cf6, #6366f1, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">{inspectionsData.title}</h1>
+      <h1 class="service-title" style="background: linear-gradient(135deg, #f3f4f6, #9ca3af, #374151); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">{inspectionsData.title}</h1>
       
       <p class="service-description">{inspectionsData.intro}</p>
     </div>

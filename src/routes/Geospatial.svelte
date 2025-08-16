@@ -58,7 +58,7 @@
         Professional Services
       </div>
       
-      <h1 class="service-title" style="background: linear-gradient(135deg, #f59e0b, #c8a70d, #ea580c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">{geospatialData.title}</h1>
+      <h1 class="service-title" style="background: linear-gradient(135deg, #d97706, #fbbf24, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">{geospatialData.title}</h1>
       
       <p class="service-description">{geospatialData.intro}</p>
     </div>

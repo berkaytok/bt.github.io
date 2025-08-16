@@ -66,9 +66,9 @@
     </div>
     
     <h1 class="hero-title">
-      <span class="title-highlight">FPV & Autonomous</span><br>
-      <span class="title-main">sUAS & Geospatial Analytics/GIS</span><br>
-      <span class="title-accent">Services</span>
+      <span class="title-highlight" style="background: linear-gradient(135deg, #14b8a6, #f97316, #dc2626); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">FPV & Autonomous</span><br>
+      <span class="title-main" style="background: linear-gradient(135deg, #d97706, #fbbf24, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">sUAS & Geospatial Analytics/GIS</span><br>
+      <span class="title-accent" style="background: linear-gradient(135deg, #10b981, #3b82f6, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Services</span>
     </h1>
     
     <p class="hero-description">
@@ -136,7 +136,7 @@
 <section class="credentials-section">
   <div class="container">
     <div class="section-header reveal fade-up">
-      <h2>Why Choose Professional Drone Services?</h2>
+      <h2 style="background: linear-gradient(135deg, #10b981, #3b82f6, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Why Choose Professional Drone Services?</h2>
       <p class="section-subtitle">Advanced aerial solutions backed by FAA certification and graduate-level expertise</p>
     </div>
     
@@ -185,7 +185,7 @@
   <div class="container">
     <div class="card reveal fade-up cta-glass-card">
       <div class="cta-content">
-        <h2>Ready to Elevate Your Project?</h2>
+        <h2 style="background: linear-gradient(135deg, #f59e0b, #ef4444, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Ready to Elevate Your Project?</h2>
         <p>Get professional aerial services that deliver results. Fast quotes, flexible scheduling, guaranteed quality.</p>
         <div class="cta-buttons">
           <a class="btn primary large" href="#/contact">

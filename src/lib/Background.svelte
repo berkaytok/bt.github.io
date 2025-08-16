@@ -13,43 +13,71 @@
   let frameId;
 
   // --- Configuration ---
-  const NUM_POINTS = 50;
+  const NUM_POINTS = 100;
   const POINT_RADIUS = 3;
-  const CONNECTION_DISTANCE = 500;
+  const CONNECTION_DISTANCE = 250;
   const MOUSE_INFLUENCE_RADIUS = 250;
   const MOUSE_SMOOTHING = 0.4;
-  const MAX_VELOCITY = 10;
-  const MOUSE_FORCE = 0.1;
+  const MAX_VELOCITY = 25;
+  const MOUSE_FORCE = 0.5;
 
   // Color schemes for different sections
   const colorSchemes = {
     home: {
       point: 'rgba(255, 255, 255, 0.1)',
-      line: 'rgba(255, 255, 255, 0.25)'
+      line: 'rgba(255, 255, 255, 0.25)',
+      gradient: {
+        inner: 'rgba(4, 120, 87, 0.04)',
+        outer: 'rgba(6, 78, 59, 0.15)'
+      }
     },
     geospatial: {
       point: 'rgba(184, 67, 13, 0.1)',
-      line: 'rgba(184, 67, 13, 0.5)'
+      line: 'rgba(184, 67, 13, 0.5)',
+      gradient: {
+        inner: 'rgba(184, 67, 13, 0.04)',
+        outer: 'rgba(146, 34, 6, 0.15)'
+      }
     },
     cinematography: {
       point: 'rgba(45, 212, 191, 0.1)',
-      line: 'rgba(20, 184, 166, 0.5)'
+      line: 'rgba(20, 184, 166, 0.5)',
+      gradient: {
+        inner: 'rgba(45, 212, 191, 0.04)',
+        outer: 'rgba(20, 184, 166, 0.15)'
+      }
     },
     agriculture: {
       point: 'rgba(34, 197, 94, 0.1)',
-      line: 'rgba(34, 197, 94, 0.5)'
+      line: 'rgba(34, 197, 94, 0.5)',
+      gradient: {
+        inner: 'rgba(34, 197, 94, 0.04)',
+        outer: 'rgba(22, 163, 74, 0.15)'
+      }
     },
     inspections: {
       point: 'rgba(99, 102, 241, 0.1)',
-      line: 'rgba(99, 102, 241, 0.5)'
+      line: 'rgba(99, 102, 241, 0.5)',
+      gradient: {
+        inner: 'rgba(99, 102, 241, 0.04)',
+        outer: 'rgba(79, 70, 229, 0.15)'
+      }
     },
     research: {
       point: 'rgba(168, 85, 247, 0.1)',
-      line: 'rgba(168, 85, 247, 0.5)'
+      line: 'rgba(168, 85, 247, 0.5)',
+      gradient: {
+        inner: 'rgba(168, 85, 247, 0.04)',
+        outer: 'rgba(147, 51, 234, 0.15)'
+      }
     },
     contact: {
       point: 'rgba(245, 158, 11, 0.1)',
-      line: 'rgba(245, 158, 11, 0.5)'
+      line: 'rgba(245, 158, 11, 0.5)',
+      gradient: {
+        inner: 'rgba(245, 158, 11, 0.04)',
+        outer: 'rgba(217, 119, 6, 0.15)'
+      }
     }
   };
   // --- End Configuration ---
@@ -59,6 +87,12 @@
   let currentLineColor = { r: 255, g: 255, b: 255, a: 0.25 };
   let targetPointColor = { r: 255, g: 255, b: 255, a: 0.6 };
   let targetLineColor = { r: 255, g: 255, b: 255, a: 0.25 };
+  
+  // Gradient color values (will be updated smoothly)
+  let currentGradientInner = { r: 4, g: 120, b: 87, a: 0.04 };
+  let currentGradientOuter = { r: 6, g: 78, b: 59, a: 0.15 };
+  let targetGradientInner = { r: 4, g: 120, b: 87, a: 0.04 };
+  let targetGradientOuter = { r: 6, g: 78, b: 59, a: 0.15 };
 
   // Extract RGBA values from color string
   function parseRGBA(colorStr) {
@@ -74,6 +108,8 @@
     const colors = Array.isArray(scheme) ? scheme[0] : scheme;
     targetPointColor = parseRGBA(colors.point);
     targetLineColor = parseRGBA(colors.line);
+    targetGradientInner = parseRGBA(colors.gradient.inner);
+    targetGradientOuter = parseRGBA(colors.gradient.outer);
   }
 
   // Smooth color interpolation (like CSS transitions)
@@ -106,12 +142,24 @@
   // Creates the constellation points
   function createPoints() {
     points = [];
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+    
     for (let i = 0; i < NUM_POINTS; i++) {
+      // Start all points at the center
+      const initialRadius = 250; // Small cluster around center
+      const angle = Math.random() * Math.PI * 2;
+      const radius = Math.random() * initialRadius;
+      
+      // Calculate spread velocity - points move outward from center
+      const spreadAngle = Math.random() * Math.PI * 2;
+      const spreadSpeed = 2 + Math.random() * 3; // Random speed between 2-5
+      
       points.push({
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
-        vx: (Math.random() - 0.5) * 0.2,
-        vy: (Math.random() - 0.5) * 0.2,
+        x: centerX + Math.cos(angle) * radius,
+        y: centerY + Math.sin(angle) * radius,
+        vx: Math.cos(spreadAngle) * spreadSpeed,
+        vy: Math.sin(spreadAngle) * spreadSpeed,
         baseX: Math.random() * window.innerWidth,
         baseY: Math.random() * window.innerHeight
       });
@@ -136,13 +184,15 @@
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw static gradient background
+    // Draw dynamic gradient background with smooth transitions
     const gradient = ctx.createRadialGradient(
       canvas.width * 0.5, canvas.height * 0.5, 0,
       canvas.width * 0.5, canvas.height * 0.5, Math.max(canvas.width, canvas.height) * 0.8
     );
-    gradient.addColorStop(0, 'rgba(4, 120, 87, 0.08)');
-    gradient.addColorStop(1, 'rgba(6, 78, 59, 0.25)');
+    const innerColor = `rgba(${Math.round(currentGradientInner.r)}, ${Math.round(currentGradientInner.g)}, ${Math.round(currentGradientInner.b)}, ${currentGradientInner.a})`;
+    const outerColor = `rgba(${Math.round(currentGradientOuter.r)}, ${Math.round(currentGradientOuter.g)}, ${Math.round(currentGradientOuter.b)}, ${currentGradientOuter.a})`;
+    gradient.addColorStop(0, innerColor);
+    gradient.addColorStop(1, outerColor);
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -257,6 +307,10 @@
     // Smooth color transitions (similar to CSS ease-in-out)
     currentPointColor = lerpColor(currentPointColor, targetPointColor, 0.05);
     currentLineColor = lerpColor(currentLineColor, targetLineColor, 0.05);
+    
+    // Very slow gradient transitions
+    currentGradientInner = lerpColor(currentGradientInner, targetGradientInner, 0.01);
+    currentGradientOuter = lerpColor(currentGradientOuter, targetGradientOuter, 0.01);
     
     draw();
     

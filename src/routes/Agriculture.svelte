@@ -57,7 +57,7 @@
         Professional Services
       </div>
       
-      <h1 class="service-title" style="background: linear-gradient(135deg, #10b981, #22c55e, #059669); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">{agricultureData.title}</h1>
+      <h1 class="service-title" style="background: linear-gradient(135deg, #10b981, #d97706, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">{agricultureData.title}</h1>
       
       <p class="service-description">{agricultureData.intro}</p>
     </div>
