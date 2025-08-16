@@ -1,10 +1,7 @@
 <script>
   import { onMount } from 'svelte';
 
-  let heroVisible = false;
-  let servicesVisible = false;
   let statsVisible = false;
-  let testimonialsVisible = false;
 
   function observe() {
     const io = new IntersectionObserver((entries) => {
@@ -30,10 +27,7 @@
 
   onMount(() => {
     observe();
-    setTimeout(() => heroVisible = true, 100);
-    setTimeout(() => servicesVisible = true, 300);
     setTimeout(() => statsVisible = true, 500);
-    setTimeout(() => testimonialsVisible = true, 700);
   });
 
   const services = [
@@ -139,102 +133,76 @@
   </aside>
 </section>
 
-<section class="credentials-section {servicesVisible ? 'reveal visible' : 'reveal'}">
-  <div class="section-header">
-    <h2>Why Choose Professional Drone Services?</h2>
-    <p class="section-subtitle">Advanced aerial solutions backed by FAA certification and graduate-level expertise</p>
-  </div>
-  <div class="credentials-grid">
-    <div class="credential-card stagger-child">
-      <div class="credential-icon">
-        <span>🛡️</span>
-      </div>
-      <h3>Certified & Insured</h3>
-      <p>Part 107 FAA certified with comprehensive liability coverage. Licensed for commercial operations nationwide</p>
-      <div class="credential-badge">FAA Part 107</div>
+<section class="credentials-section">
+  <div class="container">
+    <div class="section-header reveal fade-up">
+      <h2>Why Choose Professional Drone Services?</h2>
+      <p class="section-subtitle">Advanced aerial solutions backed by FAA certification and graduate-level expertise</p>
     </div>
-    <div class="credential-card stagger-child">
-      <div class="credential-icon">
-        <span>🎓</span>
-      </div>
-      <h3>Geospatial Analytics</h3>
-      <p>Cutting-edge geospatial analysis, real-time data dashboards, geospatial machine and deep learning solutions</p>
-      <div class="credential-badge">Geospatial Analytics</div>
-    </div>
-    <div class="credential-card stagger-child">
-      <div class="credential-icon">
-        <span>🎨</span>
-      </div>
-      <h3>Creative Approach</h3>
-      <p>Acrobatic FPV cinelifters and cinewhoops for lifting your choice of camera safely or fly for events with class 1 drones</p>
-      <div class="credential-badge">Hire us for your set</div>
-    </div>
-  </div>
-</section>
-<!-- 
-<section class="testimonials-section {testimonialsVisible ? 'reveal visible' : 'reveal'}">
-  <div class="section-header">
-    <h2>Client Success Stories</h2>
-    <p class="section-subtitle">Trusted by leading organizations across multiple industries</p>
-  </div>
-  <div class="testimonials-grid">
-    <div class="testimonial-card stagger-child">
-      <div class="testimonial-content">
-        <div class="quote-mark">"</div>
-        <p>Berkay's precision mapping helped us optimize our irrigation systems and increase crop yield by 15%. The data quality was exceptional.</p>
-      </div>
-      <div class="testimonial-author">
-        <div class="author-info">
-          <strong>Sarah Chen</strong>
-          <span>Agricultural Operations Manager</span>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial-card stagger-child">
-      <div class="testimonial-content">
-        <div class="quote-mark">"</div>
-        <p>The aerial cinematography for our commercial was absolutely stunning. Professional quality that exceeded our expectations.</p>
-      </div>
-      <div class="testimonial-author">
-        <div class="author-info">
-          <strong>Mike Rodriguez</strong>
-          <span>Creative Director</span>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial-card stagger-child">
-      <div class="testimonial-content">
-        <div class="quote-mark">"</div>
-        <p>Fast, reliable, and incredibly detailed surveying work. The GIS data integration saved us weeks of field work.</p>
-      </div>
-      <div class="testimonial-author">
-        <div class="author-info">
-          <strong>Jennifer Walsh</strong>
-          <span>Project Engineer</span>
+    
+    <div class="card reveal fade-up credentials-glass-card">
+      <div class="credentials-content">
+        <div class="credentials-grid">
+          <div class="credential-item stagger-child">
+            <div class="credential-icon">
+              <span>🛡️</span>
+            </div>
+            <div class="credential-text">
+              <h3>Certified & Insured</h3>
+              <p>Part 107 FAA certified with comprehensive liability coverage. Licensed for commercial operations nationwide</p>
+              <div class="credential-badge">FAA Part 107</div>
+            </div>
+          </div>
+          
+          <div class="credential-item stagger-child">
+            <div class="credential-icon">
+              <span>🎓</span>
+            </div>
+            <div class="credential-text">
+              <h3>Geospatial Analytics</h3>
+              <p>Cutting-edge geospatial analysis, real-time data dashboards, geospatial machine and deep learning solutions</p>
+              <div class="credential-badge">Geospatial Analytics</div>
+            </div>
+          </div>
+          
+          <div class="credential-item stagger-child">
+            <div class="credential-icon">
+              <span>🎨</span>
+            </div>
+            <div class="credential-text">
+              <h3>Creative Approach</h3>
+              <p>Acrobatic FPV cinelifters and cinewhoops for lifting your choice of camera safely or fly for events with class 1 drones</p>
+              <div class="credential-badge">Hire us for your set</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
- -->
-<section class="cta-section reveal">
-  <div class="cta-content">
-    <h2>Ready to Elevate Your Project?</h2>
-    <p>Get professional aerial services that deliver results. Fast quotes, flexible scheduling, guaranteed quality.</p>
-    <div class="cta-buttons">
-      <a class="btn primary large" href="#/contact">
-        <span class="btn-icon">🚀</span>
-        Start Your Project
-      </a>
-      <a class="btn secondary large" href="#/contact">
-        <span class="btn-icon">📞</span>
-        Schedule Consultation
-      </a>
-    </div>
-    <div class="cta-guarantee">
-      <span>✓ Free initial consultation</span>
-      <span>✓ 24-hour quote response</span>
-      <span>✓ Satisfaction guaranteed</span>
+
+<section class="cta-section">
+  <div class="container">
+    <div class="card reveal fade-up cta-glass-card">
+      <div class="cta-content">
+        <h2>Ready to Elevate Your Project?</h2>
+        <p>Get professional aerial services that deliver results. Fast quotes, flexible scheduling, guaranteed quality.</p>
+        <div class="cta-buttons">
+          <a class="btn primary large" href="#/contact">
+            <span class="btn-icon">🚀</span>
+            Start Your Project
+          </a>
+          <a class="btn secondary large" href="#/contact">
+            <span class="btn-icon">📞</span>
+            Schedule Consultation
+          </a>
+        </div>
+        <div class="cta-guarantee">
+          <span>✓ Free initial consultation</span>
+          <span>✓ 24-hour quote response</span>
+          <span>✓ Satisfaction guaranteed</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
