@@ -24,35 +24,33 @@
   // Color schemes for different sections
   const colorSchemes = {
     home: {
-      point: 'rgba(255, 255, 255, 0.6)',
+      point: 'rgba(255, 255, 255, 0.1)',
       line: 'rgba(255, 255, 255, 0.25)'
     },
     geospatial: {
-      point: 'rgba(200, 167, 13, 0.6)',
-      line: 'rgba(184, 67, 13, 0.25)'
+      point: 'rgba(184, 67, 13, 0.1)',
+      line: 'rgba(184, 67, 13, 0.5)'
     },
     cinematography: {
-      point: 'rgba(45, 212, 191, 0.6)',
-      line: 'rgba(20, 184, 166, 0.25)'
+      point: 'rgba(45, 212, 191, 0.1)',
+      line: 'rgba(20, 184, 166, 0.5)'
     },
     agriculture: {
-      point: 'rgba(34, 197, 94, 0.6)',
-      line: 'rgba(22, 163, 74, 0.25)'
+      point: 'rgba(34, 197, 94, 0.1)',
+      line: 'rgba(34, 197, 94, 0.5)'
     },
     inspections: {
-      point: 'rgba(99, 102, 241, 0.6)',
-      line: 'rgba(79, 70, 229, 0.25)'
+      point: 'rgba(99, 102, 241, 0.1)',
+      line: 'rgba(99, 102, 241, 0.5)'
     },
-    research: [
-      { point: 'rgba(168, 85, 247, 0.6)', line: 'rgba(147, 51, 234, 0.25)' },
-      { point: 'rgba(236, 72, 153, 0.6)', line: 'rgba(219, 39, 119, 0.25)' },
-      { point: 'rgba(59, 130, 246, 0.6)', line: 'rgba(37, 99, 235, 0.25)' }
-    ],
-    contact: [
-      { point: 'rgba(245, 158, 11, 0.6)', line: 'rgba(217, 119, 6, 0.25)' },
-      { point: 'rgba(239, 68, 68, 0.6)', line: 'rgba(220, 38, 38, 0.25)' },
-      { point: 'rgba(139, 92, 246, 0.6)', line: 'rgba(124, 58, 237, 0.25)' }
-    ]
+    research: {
+      point: 'rgba(168, 85, 247, 0.1)',
+      line: 'rgba(168, 85, 247, 0.5)'
+    },
+    contact: {
+      point: 'rgba(245, 158, 11, 0.1)',
+      line: 'rgba(245, 158, 11, 0.5)'
+    }
   };
   // --- End Configuration ---
 
