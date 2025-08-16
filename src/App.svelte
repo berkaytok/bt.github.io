@@ -1,26 +1,43 @@
 <script>
   import Background from './lib/Background.svelte'
   import Home from './routes/Home.svelte'
-  import Geospatial from './routes/Geospatial.svelte'
-  import Cinematography from './routes/Cinematography.svelte'
-  import Agriculture from './routes/Agriculture.svelte'
-  import Inspections from './routes/Inspections.svelte'
-  import Contact from './routes/Contact.svelte'
-  import Research from './routes/Research.svelte'
   import { route } from './lib/route.js'
 
   const routes = {
     'home': Home,
-    'geospatial': Geospatial,
-    'cinematography': Cinematography,
-    'agriculture': Agriculture,
-    'inspections': Inspections,
-    'research': Research,
-    'contact': Contact
+    'geospatial': () => import('./routes/Geospatial.svelte'),
+    'cinematography': () => import('./routes/Cinematography.svelte'),
+    'agriculture': () => import('./routes/Agriculture.svelte'),
+    'inspections': () => import('./routes/Inspections.svelte'),
+    'research': () => import('./routes/Research.svelte'),
+    'contact': () => import('./routes/Contact.svelte')
   }
 
+  let currentComponent = Home
+  let loadingRoute = false
+
   let current = 'home'
-  route.subscribe(v => current = v || 'home')
+  route.subscribe(async (v) => {
+    const newRoute = v || 'home'
+    if (newRoute !== current) {
+      current = newRoute
+      const routeHandler = routes[current]
+      
+      if (typeof routeHandler === 'function') {
+        loadingRoute = true
+        try {
+          const module = await routeHandler()
+          currentComponent = module.default
+        } catch (err) {
+          console.error('Failed to load route:', err)
+          currentComponent = Home
+        }
+        loadingRoute = false
+      } else {
+        currentComponent = routeHandler
+      }
+    }
+  })
 
   let mx = 0
   let my = 0
@@ -29,17 +46,26 @@
   $: bgX = mx * 40
   $: bgY = my * 40
 
+  let rafId
   $: {
-    document.documentElement.style.setProperty('--mx', `${(mx * 20).toFixed(2)}px`)
-    document.documentElement.style.setProperty('--my', `${(my * 20).toFixed(2)}px`)
-    document.documentElement.style.setProperty('--bg-x', `${bgX.toFixed(2)}px`)
-    document.documentElement.style.setProperty('--bg-y', `${bgY.toFixed(2)}px`)
-    document.documentElement.style.setProperty('--scroll-y', `${scrollY.toFixed(2)}px`)
+    if (rafId) cancelAnimationFrame(rafId)
+    rafId = requestAnimationFrame(() => {
+      document.documentElement.style.setProperty('--mx', `${(mx * 20).toFixed(2)}px`)
+      document.documentElement.style.setProperty('--my', `${(my * 20).toFixed(2)}px`)
+      document.documentElement.style.setProperty('--bg-x', `${bgX.toFixed(2)}px`)
+      document.documentElement.style.setProperty('--bg-y', `${bgY.toFixed(2)}px`)
+      document.documentElement.style.setProperty('--scroll-y', `${scrollY.toFixed(2)}px`)
+    })
   }
 
+  let throttleId
   function handleMove(e) {
-    mx = (e.clientX / window.innerWidth - 0.5)
-    my = (e.clientY / window.innerHeight - 0.5)
+    if (throttleId) return
+    throttleId = requestAnimationFrame(() => {
+      mx = (e.clientX / window.innerWidth - 0.5)
+      my = (e.clientY / window.innerHeight - 0.5)
+      throttleId = null
+    })
   }
 
   function go(to) {
@@ -75,10 +101,10 @@
   </header>
 
   <main class="container">
-    {#if routes[current]}
-      <svelte:component this={routes[current]} />
+    {#if loadingRoute}
+      <div class="loading">Loading...</div>
     {:else}
-      <Home />
+      <svelte:component this={currentComponent} />
     {/if}
 
     <footer class="footer">
@@ -91,5 +117,14 @@
   .content-wrapper {
     position: relative;
     z-index: 2;
+  }
+  
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    color: var(--muted);
+    font-size: 14px;
   }
 </style>

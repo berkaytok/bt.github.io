@@ -6,6 +6,21 @@ export default defineConfig({
   plugins: [svelte()],
   base: './',
   build: {
-    outDir: 'dist'
+    outDir: 'dist',
+    cssCodeSplit: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['svelte']
+        }
+      }
+    },
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true
+      }
+    }
   }
 });
