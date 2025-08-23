@@ -136,7 +136,6 @@
         point.vy += (dy / dist) * force * cachedMouseSpeed * MOUSE_FORCE;
       }
 
-
       // Update position with damping
       point.x += point.vx;
       point.y += point.vy;
