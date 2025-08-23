@@ -60,14 +60,14 @@
 
 <section class="hero">
   <div class="hero-left slide-in-left reveal">
-    <div class="hero-badge">
-      <span class="badge-icon">✈️</span>
-      <span>Part 107 FAA Certified</span>
+    <div class="hero-certification">
+      <span class="cert-icon">🛡️</span>
+      <span class="cert-text">Part 107 FAA Certified</span>
     </div>
     
     <h1 class="hero-title">
-      <span class="title-main" style="background: linear-gradient(135deg, #14b8a6, #f97316, #dc2626, #d97706, #fbbf24, #10b981, #3b82f6, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-        Professional Drone &<br>
+      <span class="title-main" style="color: var(--secondary);">
+        Drone Based<br>
         Geospatial Intelligence<br>
         Solutions
       </span>
@@ -119,9 +119,9 @@
       <div class="preview-subtitle">Professional-grade solutions</div>
     </div>
     <div class="service-grid">
-      {#each services as service}
+      {#each services as service, index}
         <a class="service-card stagger-child" href={`#/${service.id}`}>
-          <div class="service-icon">
+          <div class="service-icon" style="background: {index === 0 ? '#005E54' : index === 1 ? '#C2BB00' : index === 2 ? '#E1523D' : '#ED8B16'}">
             <span>{service.icon}</span>
           </div>
           <div class="service-content">
@@ -135,59 +135,12 @@
   </aside>
 </section>
 
-<section class="credentials-section">
-  <div class="container">
-    <div class="section-header reveal fade-up">
-      <h2 style="background: linear-gradient(135deg, #10b981, #3b82f6, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Why Choose Professional Drone Services?</h2>
-      <p class="section-subtitle">Advanced aerial solutions backed by FAA certification and graduate-level expertise</p>
-    </div>
-    
-    <div class="card reveal fade-up credentials-glass-card">
-      <div class="credentials-content">
-        <div class="credentials-grid">
-          <div class="credential-item stagger-child">
-            <div class="credential-icon">
-              <span>🛡️</span>
-            </div>
-            <div class="credential-text">
-              <h3>Certified & Insured</h3>
-              <p>Part 107 FAA certified with comprehensive liability coverage. Licensed for commercial operations nationwide</p>
-              <div class="credential-badge">FAA Part 107</div>
-            </div>
-          </div>
-          
-          <div class="credential-item stagger-child">
-            <div class="credential-icon">
-              <span>🎓</span>
-            </div>
-            <div class="credential-text">
-              <h3>Geospatial Analytics</h3>
-              <p>Cutting-edge geospatial analysis, real-time data dashboards, geospatial machine and deep learning solutions</p>
-              <div class="credential-badge">Geospatial Analytics</div>
-            </div>
-          </div>
-          
-          <div class="credential-item stagger-child">
-            <div class="credential-icon">
-              <span>🎨</span>
-            </div>
-            <div class="credential-text">
-              <h3>Creative Approach</h3>
-              <p>Acrobatic FPV cinelifters and cinewhoops for lifting your choice of camera safely or fly for events with class 1 drones</p>
-              <div class="credential-badge">Hire us for your set</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="cta-section">
   <div class="container">
     <div class="card reveal fade-up cta-glass-card">
       <div class="cta-content">
-        <h2 style="background: linear-gradient(135deg, #f59e0b, #ef4444, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Ready to Elevate Your Project?</h2>
+        <h2 style="color: var(--secondary);">Ready to Elevate Your Project?</h2>
         <p>Get professional aerial services that deliver results. Fast quotes, flexible scheduling, guaranteed quality.</p>
         <div class="cta-buttons">
           <a class="btn primary large" href="#/contact">

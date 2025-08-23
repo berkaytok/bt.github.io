@@ -40,11 +40,11 @@
     return () => observer.disconnect();
   });
 
-  // Cinematography page colors (teal theme)
+  // Cinematography page colors (RockON burnt orange theme)
   const cinematographyColors = {
-    primary: '#2dd4bf',
-    primaryDark: '#14b8a6',
-    accent: '#2dd4bf'
+    primary: '#C43302',
+    primaryDark: '#A42B02',
+    accent: '#C43302'
   };
 
   function go(to) { location.hash = `#/${to}`; }
@@ -58,7 +58,7 @@
         Professional Services
       </div>
       
-      <h1 class="service-title" style="background: linear-gradient(135deg, #14b8a6, #f97316, #dc2626); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">{cinematographyData.title}</h1>
+      <h1 class="service-title" style="color: var(--section-primary);">{cinematographyData.title}</h1>
       
       <p class="service-description">{cinematographyData.intro}</p>
     </div>
@@ -114,7 +114,7 @@
 <style>
   /* Section-specific styling using CSS custom properties */
   .service-hero :global(.btn.primary) {
-    background: linear-gradient(135deg, var(--section-primary), var(--section-primary-dark));
+    background: var(--section-primary);
     border-color: var(--section-primary);
     box-shadow: 0 8px 32px color-mix(in srgb, var(--section-primary) 25%, transparent);
     transition: all 1.5s ease-in-out;

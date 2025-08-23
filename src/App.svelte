@@ -18,6 +18,8 @@
   let loadingRoute = false
 
   let current = 'home'
+  let mobileNavOpen = false
+  
   route.subscribe(async (v) => {
     const newRoute = v || 'home'
     if (newRoute !== current) {
@@ -71,6 +73,11 @@
 
   function go(to) {
     location.hash = `#/${to}`
+    mobileNavOpen = false // Close mobile nav when navigating
+  }
+  
+  function toggleMobileNav() {
+    mobileNavOpen = !mobileNavOpen
   }
 </script>
 
@@ -94,7 +101,15 @@
         </div>
       </div>
 
-      <nav class="nav" aria-label="Main navigation">
+      <!-- Mobile hamburger button -->
+      <button class="mobile-nav-toggle" on:click={toggleMobileNav} aria-label="Toggle navigation">
+        <span class="hamburger-line" class:open={mobileNavOpen}></span>
+        <span class="hamburger-line" class:open={mobileNavOpen}></span>
+        <span class="hamburger-line" class:open={mobileNavOpen}></span>
+      </button>
+      
+      <!-- Desktop navigation -->
+      <nav class="nav desktop-nav" aria-label="Main navigation">
         <a href="#/home" on:click|preventDefault={() => go('home')}>Home</a>
         <a href="#/geospatial" on:click|preventDefault={() => go('geospatial')}>Geospatial</a>
         <a href="#/cinematography" on:click|preventDefault={() => go('cinematography')}>Cinematography</a>
@@ -106,6 +121,28 @@
       </nav>
     </div>
   </header>
+  
+  <!-- Mobile navigation overlay -->
+  {#if mobileNavOpen}
+    <div 
+      class="mobile-nav-overlay" 
+      on:click={toggleMobileNav}
+      on:keydown={(e) => e.key === 'Escape' && toggleMobileNav()}
+      role="button"
+      tabindex="0"
+      aria-label="Close mobile navigation"
+    ></div>
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <a href="#/home" on:click|preventDefault={() => go('home')}>Home</a>
+      <a href="#/geospatial" on:click|preventDefault={() => go('geospatial')}>Geospatial</a>
+      <a href="#/cinematography" on:click|preventDefault={() => go('cinematography')}>Cinematography</a>
+      <a href="#/agriculture" on:click|preventDefault={() => go('agriculture')}>Agriculture</a>
+      <a href="#/inspections" on:click|preventDefault={() => go('inspections')}>Inspections</a>
+      <a href="#/research" on:click|preventDefault={() => go('research')}>Research</a>
+      <a href="#/contact" on:click|preventDefault={() => go('contact')}>Contact</a>
+      <a href="#/zen-zone" on:click|preventDefault={() => go('zen-zone')} class="zen-zone-link">Zen Zone</a>
+    </nav>
+  {/if}
 
   <main class="container">
     {#if loadingRoute}

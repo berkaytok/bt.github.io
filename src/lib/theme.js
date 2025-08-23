@@ -1,4 +1,4 @@
-// Central theme configuration
+// Central theme configuration - Tangerine Color Scheme
 export const theme = {
   colors: {
     home: {
@@ -6,62 +6,62 @@ export const theme = {
       point: '#ffffff1a',
       line: '#ffffff80',
       gradient: {
-        inner: '#04785709',
-        outer: '#064e3b26'
+        inner: '#C2BB0009',
+        outer: '#00354726'
       }
     },
     geospatial: {
-      primary: '#b8430d',
-      point: '#b8430d4d',
-      line: '#b8430dcc',
+      primary: '#005E54',
+      point: '#005E544d',
+      line: '#005E54cc',
       gradient: {
-        inner: '#b8430d09',
-        outer: '#92220626'
+        inner: '#005E5409',
+        outer: '#00354726'
       }
     },
     cinematography: {
-      primary: '#14b8a6',
-      point: '#2dd4bf4d',
-      line: '#14b8a6cc',
+      primary: '#C2BB00',
+      point: '#C2BB004d',
+      line: '#C2BB00cc',
       gradient: {
-        inner: '#2dd4bf09',
-        outer: '#14b8a626'
+        inner: '#C2BB0009',
+        outer: '#00354726'
       }
     },
     agriculture: {
-      primary: '#22c55e',
-      point: '#22c55e4d',
-      line: '#22c55ecc',
+      primary: '#E1523D',
+      point: '#E1523D4d',
+      line: '#E1523Dcc',
       gradient: {
-        inner: '#22c55e09',
-        outer: '#16a34a26'
+        inner: '#E1523D09',
+        outer: '#00354726'
       }
     },
     inspections: {
-      primary: '#6366f1',
-      point: '#6366f14d',
-      line: '#6366f1cc',
+      primary: '#ED8B16',
+      point: '#ED8B164d',
+      line: '#ED8B16cc',
       gradient: {
-        inner: '#6366f109',
-        outer: '#4f46e526'
+        inner: '#ED8B1609',
+        outer: '#00354726'
       }
     },
     research: {
-      primary: '#a855f7',
-      point: '#a855f74d',
-      line: '#a855f7cc',
+      primary: '#005E54',
+      point: '#005E544d',
+      line: '#005E54cc',
       gradient: {
-        inner: '#a855f709',
-        outer: '#9333ea26'
+        inner: '#005E5409',
+        outer: '#00354726'
       }
     },
     contact: {
-      primary: '#f59e0b',
-      point: '#f59e0b4d',
-      line: '#f59e0bcc',
+      primary: '#C2BB00',
+      point: '#C2BB004d',
+      line: '#C2BB00cc',
       gradient: {
-        inner: '#f59e0b09',
-        outer: '#d9770626'
+        inner: '#C2BB0009',
+        outer: '#E1523D26'
       }
     }
   }

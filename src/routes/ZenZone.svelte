@@ -21,7 +21,7 @@
   // Voice limiting removed for full musical expression
 
   // Configuration
-  const NUM_POINTS = 50;
+  const NUM_POINTS = 20;
   const POINT_RADIUS = 3;
   const CONNECTION_DISTANCE = 250;
   const MOUSE_INFLUENCE_RADIUS = 200;
@@ -29,12 +29,12 @@
   const MAX_VELOCITY = 20;
   const MOUSE_FORCE = 0.5;
 
-  // Pentatonic scale notes (C major pentatonic) - octave 2 for deeper, meditative sound
-  const pentatonicNotes = [65.40, 73.42, 82.40, 98.00, 110.00]; // C, D, E, G, A in octave 2
+  // Pentatonic scale notes (C major pentatonic) - octave 3 for brighter, higher sound
+  const pentatonicNotes = [130.81, 146.83, 164.81, 196.00, 220.00]; // C, D, E, G, A in octave 3
   
-  // Rectangular grid configuration  
-  const GRID_ROWS = 7; // Y-axis (octaves)
-  const GRID_COLS = 14; // X-axis (pentatonic notes across octaves)
+  // Rectangular grid configuration - 5x4 grid (5 pentatonic notes × 4 octaves)
+  const GRID_ROWS = 4; // Y-axis (4 octaves)
+  const GRID_COLS = 5; // X-axis (5 pentatonic notes)
   
   // No audio limiting - full strumming expression
   let activeNotes = [];
@@ -153,12 +153,12 @@
       filter.frequency.exponentialRampToValueAtTime(400, now + duration * 0.8);
       filter.Q.setValueAtTime(2, now);
       
-      // Configure plucky envelope with very extended release
+      // Configure plucky envelope with shorter, more responsive release
       gainNode.gain.setValueAtTime(0, now);
       gainNode.gain.linearRampToValueAtTime(volume, now + 0.01);
-      gainNode.gain.exponentialRampToValueAtTime(volume * 0.7, now + 0.4); // Longer sustain
-      gainNode.gain.exponentialRampToValueAtTime(volume * 0.4, now + duration * 1.2); // Much longer sustain
-      gainNode.gain.exponentialRampToValueAtTime(0.001, now + duration * 2.5); // Very long total release
+      gainNode.gain.exponentialRampToValueAtTime(volume * 0.7, now + 0.2); // Shorter sustain
+      gainNode.gain.exponentialRampToValueAtTime(volume * 0.3, now + duration * 0.6); // Reduced sustain
+      gainNode.gain.exponentialRampToValueAtTime(0.001, now + duration * 1.2); // Shorter total release
       
       // Connect simplified audio graph
       oscillator.connect(filter);
@@ -166,8 +166,8 @@
       gainNode.connect(masterGain);
       gainNode.connect(reverbGain);
       
-      // Start and stop with very extended duration
-      const totalDuration = duration * 2.5; // Match the very extended envelope
+      // Start and stop with shorter duration
+      const totalDuration = duration * 1.2; // Match the shorter envelope
       oscillator.start(now);
       oscillator.stop(now + totalDuration);
       
@@ -254,17 +254,28 @@
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Slowly changing hue based on time
-    const time = Date.now() * 0.0005; // Very slow hue change
-    const hue = (time * 10) % 360; // Complete cycle every ~2 minutes
+    // Magma-inspired color progression based on time
+    const time = Date.now() * 0.0003; // Slower color evolution
+    const progress = (Math.sin(time) + 1) / 2; // 0 to 1 oscillation
     
-    // Draw gradient background with changing hue
+    // RockON color palette interpolation
+    const rockOnColors = {
+      dark: [1, 2, 33],       // Deep blue-black (#010221)
+      mid: [183, 191, 153],   // Sage green (#B7BF99)
+      bright: [196, 51, 2],   // Burnt orange (#C43302)
+      hot: [237, 170, 37]     // Golden yellow (#EDAA25)
+    };
+    
+    const bgColor1 = `rgba(${rockOnColors.dark[0]}, ${rockOnColors.dark[1]}, ${rockOnColors.dark[2]}, 0.8)`;
+    const bgColor2 = `rgba(${Math.floor(rockOnColors.mid[0] * progress)}, ${Math.floor(rockOnColors.mid[1] * progress)}, ${Math.floor(rockOnColors.mid[2] * progress)}, 0.3)`;
+    
+    // Draw gradient background with magma colors
     const gradient = ctx.createRadialGradient(
       canvas.width * 0.5, canvas.height * 0.5, 0,
       canvas.width * 0.5, canvas.height * 0.5, Math.max(canvas.width, canvas.height) * 0.8
     );
-    gradient.addColorStop(0, `hsla(${hue}, 60%, 15%, 0.1)`);
-    gradient.addColorStop(1, `hsla(${hue + 30}, 70%, 10%, 0.25)`);
+    gradient.addColorStop(0, bgColor1);
+    gradient.addColorStop(1, bgColor2);
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -304,7 +315,7 @@
       const distanceToCenter = Math.sqrt(toCenterX * toCenterX + toCenterY * toCenterY);
       
       if (distanceToCenter > 0) {
-        const gravitationalForce = 0.015; // Half as strong - more gentle pull
+        const gravitationalForce = 0.008; // Much gentler pull
         const normalizedX = toCenterX / distanceToCenter;
         const normalizedY = toCenterY / distanceToCenter;
         
@@ -371,10 +382,39 @@
         point.currentCell = newCell;
       }
 
-      // Draw point with changing hue
+      // Draw point with magma colors
       ctx.beginPath();
       ctx.arc(point.x, point.y, POINT_RADIUS, 0, Math.PI * 2);
-      ctx.fillStyle = `hsla(${hue + (index * 10)}, 80%, 70%, 0.8)`;
+      
+      // Interpolate through magma palette based on point index and movement
+      const pointProgress = ((index / points.length) + progress * 0.5) % 1;
+      const pointSpeed = Math.sqrt(point.vx * point.vx + point.vy * point.vy);
+      const intensity = Math.min(1, pointSpeed / 10);
+      
+      let r, g, b;
+      if (pointProgress < 0.33) {
+        // Dark to green transition
+        const t = pointProgress / 0.33;
+        r = Math.floor(rockOnColors.dark[0] + (rockOnColors.mid[0] - rockOnColors.dark[0]) * t);
+        g = Math.floor(rockOnColors.dark[1] + (rockOnColors.mid[1] - rockOnColors.dark[1]) * t);
+        b = Math.floor(rockOnColors.dark[2] + (rockOnColors.mid[2] - rockOnColors.dark[2]) * t);
+      } else if (pointProgress < 0.66) {
+        // Green to orange transition
+        const t = (pointProgress - 0.33) / 0.33;
+        r = Math.floor(rockOnColors.mid[0] + (rockOnColors.bright[0] - rockOnColors.mid[0]) * t);
+        g = Math.floor(rockOnColors.mid[1] + (rockOnColors.bright[1] - rockOnColors.mid[1]) * t);
+        b = Math.floor(rockOnColors.mid[2] + (rockOnColors.bright[2] - rockOnColors.mid[2]) * t);
+      } else {
+        // Orange to yellow transition
+        const t = (pointProgress - 0.66) / 0.34;
+        r = Math.floor(rockOnColors.bright[0] + (rockOnColors.hot[0] - rockOnColors.bright[0]) * t);
+        g = Math.floor(rockOnColors.bright[1] + (rockOnColors.hot[1] - rockOnColors.bright[1]) * t);
+        b = Math.floor(rockOnColors.bright[2] + (rockOnColors.hot[2] - rockOnColors.bright[2]) * t);
+      }
+      
+      // Brighten based on movement intensity - much brighter overall
+      const alpha = 0.9 + intensity * 0.1; // Higher base opacity
+      ctx.fillStyle = `rgba(${Math.min(255, r * 1.3)}, ${Math.min(255, g * 1.3)}, ${Math.min(255, b * 1.3)}, ${alpha})`;
       ctx.fill();
     });
 
@@ -408,7 +448,30 @@
           ctx.beginPath();
           ctx.moveTo(p1.x, p1.y);
           ctx.quadraticCurveTo(controlX, controlY, p2.x, p2.y);
-          ctx.strokeStyle = `hsla(${hue + (i * 5)}, 70%, 60%, ${opacity * 0.6})`;
+          
+          // Use RockON colors for connections
+          const connectionProgress = ((i + j) / (points.length * 2) + progress * 0.3) % 1;
+          let lineR, lineG, lineB;
+          
+          if (connectionProgress < 0.5) {
+            // Dark green to orange
+            const t = connectionProgress / 0.5;
+            lineR = Math.floor(rockOnColors.mid[0] + (rockOnColors.bright[0] - rockOnColors.mid[0]) * t);
+            lineG = Math.floor(rockOnColors.mid[1] + (rockOnColors.bright[1] - rockOnColors.mid[1]) * t);
+            lineB = Math.floor(rockOnColors.mid[2] + (rockOnColors.bright[2] - rockOnColors.mid[2]) * t);
+          } else {
+            // Orange to yellow
+            const t = (connectionProgress - 0.5) / 0.5;
+            lineR = Math.floor(rockOnColors.bright[0] + (rockOnColors.hot[0] - rockOnColors.bright[0]) * t);
+            lineG = Math.floor(rockOnColors.bright[1] + (rockOnColors.hot[1] - rockOnColors.bright[1]) * t);
+            lineB = Math.floor(rockOnColors.bright[2] + (rockOnColors.hot[2] - rockOnColors.bright[2]) * t);
+          }
+          
+          // Brighten connection lines significantly
+          const brightenedR = Math.min(255, lineR * 1.4);
+          const brightenedG = Math.min(255, lineG * 1.4);
+          const brightenedB = Math.min(255, lineB * 1.4);
+          ctx.strokeStyle = `rgba(${brightenedR}, ${brightenedG}, ${brightenedB}, ${opacity * 0.8})`;
           ctx.stroke();
         }
       }

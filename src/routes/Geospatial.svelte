@@ -40,11 +40,11 @@
     return () => observer.disconnect();
   });
 
-  // Geospatial page colors (orange/amber theme)
+  // Geospatial page colors (RockON golden yellow theme)
   const geospatialColors = {
-    primary: '#c8a70d',
-    primaryDark: '#b8970b',
-    accent: '#c8a70d'
+    primary: '#EDAA25',
+    primaryDark: '#D4941F',
+    accent: '#EDAA25'
   };
 
   function go(to) { location.hash = `#/${to}`; }
@@ -58,7 +58,7 @@
         Professional Services
       </div>
       
-      <h1 class="service-title" style="background: linear-gradient(135deg, #d97706, #fbbf24, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">{geospatialData.title}</h1>
+      <h1 class="service-title" style="color: var(--section-primary);">{geospatialData.title}</h1>
       
       <p class="service-description">{geospatialData.intro}</p>
     </div>
@@ -114,7 +114,7 @@
 <style>
   /* Section-specific styling using CSS custom properties */
   .service-hero :global(.btn.primary) {
-    background: linear-gradient(135deg, var(--section-primary), var(--section-primary-dark));
+    background: var(--section-primary);
     border-color: var(--section-primary);
     box-shadow: 0 8px 32px color-mix(in srgb, var(--section-primary) 25%, transparent);
     transition: all 1.5s ease-in-out;

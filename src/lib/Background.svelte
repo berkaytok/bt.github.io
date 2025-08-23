@@ -27,19 +27,14 @@
   const CONNECTION_DISTANCE = 200;
   const MAX_CONNECTIONS_PER_PARTICLE = 3; // Limit connections for performance
   const MOUSE_INFLUENCE_RADIUS = 100;
-  const MOUSE_SMOOTHING = 0.4;
-  const MAX_VELOCITY = 20;
+  const MOUSE_SMOOTHING = 0.9;
   const MOUSE_FORCE = 0.5;
   
   // Physics constants
-  const DAMPING_FACTOR = 0.965;
-  const FLOATING_MOTION_INTENSITY = 0.1;
-  const MOUSE_REPULSION_STRENGTH = 0.5;
-  const SCATTER_ANGLE_RANGE = 0.5; // Fraction of PI
-  const FORCE_CURVE_EXPONENT = 0.1;
+  const DAMPING_FACTOR = 0.98; // Stronger damping for stability
   
   // Visual constants
-  const LINE_WIDTH = 0.5;
+  const LINE_WIDTH = 0.9;
   const GRADIENT_RADIUS_MULTIPLIER = 0.8;
 
   // Cache colors when route changes
@@ -75,7 +70,7 @@
       
       // Calculate spread velocity - points move outward from center
       const spreadAngle = Math.random() * Math.PI * 2;
-      const spreadSpeed = 2 + Math.random() * 3; // Random speed between 2-5
+      const spreadSpeed = 0.5 + Math.random() * 1; // Much gentler speed between 0.5-1.5
       
       points.push({
         x: centerX + Math.cos(angle) * radius,
@@ -134,31 +129,13 @@
       const dy = mouseY - point.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
 
-      // Apply mouse influence with scatter effect
+      // Apply simple linear mouse influence
       if (dist < MOUSE_INFLUENCE_RADIUS) {
-        const force = (1 - dist / MOUSE_INFLUENCE_RADIUS) ** FORCE_CURVE_EXPONENT;
-        const angle = Math.atan2(dy, dx);
-        const scatter = (Math.random() - 0.5) * Math.PI * SCATTER_ANGLE_RANGE;
-        
-        // Add perpendicular force for scatter
-        point.vx += (Math.cos(angle + scatter) * cachedMouseSpeed * force * MOUSE_FORCE);
-        point.vy += (Math.sin(angle + scatter) * cachedMouseSpeed * force * MOUSE_FORCE);
-        
-        // Add repulsion from mouse
-        point.vx += (dx / dist) * force * cachedMouseSpeed * MOUSE_REPULSION_STRENGTH;
-        point.vy += (dy / dist) * force * cachedMouseSpeed * MOUSE_REPULSION_STRENGTH;
+        const force = (1 - dist / MOUSE_INFLUENCE_RADIUS); // Linear force curve
+        point.vx += (dx / dist) * force * cachedMouseSpeed * MOUSE_FORCE;
+        point.vy += (dy / dist) * force * cachedMouseSpeed * MOUSE_FORCE;
       }
 
-      // Add gentle floating motion for free movement
-      point.vx += (Math.random() - 0.5) * FLOATING_MOTION_INTENSITY;
-      point.vy += (Math.random() - 0.5) * FLOATING_MOTION_INTENSITY;
-
-      // Limit velocity
-      const speed = Math.sqrt(point.vx * point.vx + point.vy * point.vy);
-      if (speed > MAX_VELOCITY) {
-        point.vx = (point.vx / speed) * MAX_VELOCITY;
-        point.vy = (point.vy / speed) * MAX_VELOCITY;
-      }
 
       // Update position with damping
       point.x += point.vx;

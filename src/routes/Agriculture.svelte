@@ -40,11 +40,11 @@
     return () => observer.disconnect();
   });
 
-  // Agriculture page colors (green theme)
+  // Agriculture page colors (RockON sage green theme)
   const agricultureColors = {
-    primary: '#22c55e',
-    primaryDark: '#16a34a',
-    accent: '#22c55e'
+    primary: '#B7BF99',
+    primaryDark: '#A4AC88',
+    accent: '#B7BF99'
   };
 
   function go(to) { location.hash = `#/${to}`; }
@@ -58,7 +58,7 @@
         Professional Services
       </div>
       
-      <h1 class="service-title" style="background: linear-gradient(135deg, #10b981, #d97706, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">{agricultureData.title}</h1>
+      <h1 class="service-title" style="color: var(--section-primary);">{agricultureData.title}</h1>
       
       <p class="service-description">{agricultureData.intro}</p>
     </div>
@@ -114,7 +114,7 @@
 <style>
   /* Section-specific styling using CSS custom properties */
   .service-hero :global(.btn.primary) {
-    background: linear-gradient(135deg, var(--section-primary), var(--section-primary-dark));
+    background: var(--section-primary);
     border-color: var(--section-primary);
     box-shadow: 0 8px 32px color-mix(in srgb, var(--section-primary) 25%, transparent);
     transition: all 1.5s ease-in-out;

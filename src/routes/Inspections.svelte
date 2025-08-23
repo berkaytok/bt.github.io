@@ -40,11 +40,11 @@
     return () => observer.disconnect();
   });
 
-  // Inspections page colors (indigo theme)
+  // Inspections page colors (RockON teal theme)
   const inspectionsColors = {
-    primary: '#6366f1',
-    primaryDark: '#4f46e5',
-    accent: '#6366f1'
+    primary: '#0A7373',
+    primaryDark: '#085A5A',
+    accent: '#0A7373'
   };
 
   function go(to) { location.hash = `#/${to}`; }
@@ -58,7 +58,7 @@
         Professional Services
       </div>
       
-      <h1 class="service-title" style="background: linear-gradient(135deg, #f3f4f6, #9ca3af, #374151); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">{inspectionsData.title}</h1>
+      <h1 class="service-title" style="color: var(--section-primary);">{inspectionsData.title}</h1>
       
       <p class="service-description">{inspectionsData.intro}</p>
     </div>
@@ -114,7 +114,7 @@
 <style>
   /* Section-specific styling using CSS custom properties */
   .service-hero :global(.btn.primary) {
-    background: linear-gradient(135deg, var(--section-primary), var(--section-primary-dark));
+    background: var(--section-primary);
     border-color: var(--section-primary);
     box-shadow: 0 8px 32px color-mix(in srgb, var(--section-primary) 25%, transparent);
     transition: all 1.5s ease-in-out;

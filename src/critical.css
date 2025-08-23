@@ -1,9 +1,9 @@
 /* Critical CSS - above the fold styles only */
 :root {
-  --bg: #000000;
+  --bg: #003547;
   --panel: #1c1c1e;
-  --accent: #0e6980;
-  --accent-light: #5AC8FA;
+  --accent: #C2BB00;
+  --accent-light: #E1523D;
   --muted: #8E8E93;
   --text-primary: #FFFFFF;
   --text-secondary: #EBEBF5;
@@ -49,14 +49,14 @@ html, body, #app {
 .logo {
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, var(--accent), #0c5061);
+  background: var(--accent);
   border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 800;
   color: var(--text-primary);
-  box-shadow: 0 8px 32px rgba(14, 105, 128, 0.3);
+  box-shadow: 0 8px 32px rgba(183, 191, 153, 0.3);
 }
 
 .nav {

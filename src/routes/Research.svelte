@@ -24,7 +24,7 @@
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
         }
-      });
+      }); 
     }, observerOptions);
 
     // Observe all elements with reveal classes
@@ -40,11 +40,11 @@
     return () => observer.disconnect();
   });
 
-  // Research page colors (multi-color gradient theme)
+  // Research page colors (RockON teal theme)
   const researchColors = {
-    primary: '#a855f7',
-    primaryDark: '#9333ea',
-    accent: '#a855f7'
+    primary: '#0A7373',
+    primaryDark: '#085A5A',
+    accent: '#0A7373'
   };
 
   function go(to) { location.hash = `#/${to}`; }
@@ -58,7 +58,7 @@
         Academic Services
       </div>
       
-      <h1 class="service-title" style="background: linear-gradient(135deg, #d97706, #f59e0b, #9ca3af); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">{researchData.title}</h1>
+      <h1 class="service-title" style="color: var(--section-primary);">{researchData.title}</h1>
       
       <p class="service-description">{researchData.intro}</p>
     </div>
@@ -213,7 +213,7 @@
 <style>
   /* Section-specific styling using CSS custom properties */
   .service-hero :global(.btn.primary) {
-    background: linear-gradient(135deg, var(--section-primary), var(--section-primary-dark));
+    background: var(--section-primary);
     border-color: var(--section-primary);
     box-shadow: 0 8px 32px color-mix(in srgb, var(--section-primary) 25%, transparent);
     transition: all 1.5s ease-in-out;
@@ -259,7 +259,7 @@
   .research-icon {
     width: 64px;
     height: 64px;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
+    background: var(--primary);
     border-radius: 16px;
     display: flex;
     align-items: center;
@@ -305,7 +305,7 @@
 
   .commitment-section {
     padding: 80px 0;
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(6, 78, 59, 0.1));
+    background: rgba(45, 80, 22, 0.05);
   }
 
   .commitment-content {

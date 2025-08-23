@@ -34,11 +34,11 @@
     return () => observer.disconnect();
   });
 
-  // Contact page colors (amber, red, purple theme)
+  // Contact page colors (RockON golden yellow theme)
   const contactColors = {
-    primary: '#f59e0b',
-    primaryDark: '#d97706',
-    accent: '#f59e0b'
+    primary: '#EDAA25',
+    primaryDark: '#D4941F',
+    accent: '#EDAA25'
   };
 
   function submit() {
@@ -51,7 +51,7 @@
   <div class="service-content">
     <!-- Contact Form Glass Pane -->
     <div class="card reveal fade-up" style="margin-bottom: 32px;">
-      <h1 class="service-title" style="background: linear-gradient(135deg, #f59e0b, #ef4444, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Contact / Request a Quote</h1>
+      <h1 class="service-title" style="color: var(--section-primary);">Contact / Request a Quote</h1>
       <p class="service-description">Tell me about your project — location, timeline, what you need (e.g. mapping / spraying / film day) and I'll follow up with availability and a project estimate.</p>
 
       <form on:submit|preventDefault={submit}>
@@ -76,7 +76,7 @@
 <style>
   /* Section-specific styling using CSS custom properties */
   .service-hero :global(.btn.primary) {
-    background: linear-gradient(135deg, var(--section-primary), var(--section-primary-dark));
+    background: var(--section-primary);
     border-color: var(--section-primary);
     box-shadow: 0 8px 32px color-mix(in srgb, var(--section-primary) 25%, transparent);
     transition: all 1.5s ease-in-out;
