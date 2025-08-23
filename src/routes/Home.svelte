@@ -66,7 +66,7 @@
     </div>
     
     <h1 class="hero-title">
-      <span class="title-main" style="color: var(--secondary);">
+      <span class="title-main" style="color: #F2B705;">
         Drone Based<br>
         Geospatial Intelligence<br>
         Solutions
@@ -81,11 +81,11 @@
     <div class="hero-stats fade-up {statsVisible ? 'visible' : ''}">
       <div class="stat-item">
         <div class="stat-number">500+</div>
-        <div class="stat-label">Flights Completed</div>
+        <div class="stat-label">Flights & Thousands of flight hours</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">20+</div>
-        <div class="stat-label">Happy Clients</div>
+        <div class="stat-number">30+</div>
+        <div class="stat-label">Drones Built</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">10</div>
@@ -121,7 +121,7 @@
     <div class="service-grid">
       {#each services as service, index}
         <a class="service-card stagger-child" href={`#/${service.id}`}>
-          <div class="service-icon" style="background: {index === 0 ? '#005E54' : index === 1 ? '#C2BB00' : index === 2 ? '#E1523D' : '#ED8B16'}">
+          <div class="service-icon" style="background: {index === 0 ? '#335928' : index === 1 ? '#F27405' : index === 2 ? '#F2B077' : '#F23E2E'}">
             <span>{service.icon}</span>
           </div>
           <div class="service-content">
@@ -140,7 +140,7 @@
   <div class="container">
     <div class="card reveal fade-up cta-glass-card">
       <div class="cta-content">
-        <h2 style="color: var(--secondary);">Ready to Elevate Your Project?</h2>
+        <h2 style="color: #F2B705;">Ready to Elevate Your Project?</h2>
         <p>Get professional aerial services that deliver results. Fast quotes, flexible scheduling, guaranteed quality.</p>
         <div class="cta-buttons">
           <a class="btn primary large" href="#/contact">

@@ -40,11 +40,11 @@
     return () => observer.disconnect();
   });
 
-  // Research page colors (RockON teal theme)
+  // Research page colors (dark forest green theme)
   const researchColors = {
-    primary: '#0A7373',
-    primaryDark: '#085A5A',
-    accent: '#0A7373'
+    primary: '#F2B705',
+    primaryDark: '#D49F04',
+    accent: '#F2B705'
   };
 
   function go(to) { location.hash = `#/${to}`; }
@@ -226,6 +226,29 @@
   .service-hero :global(.capability-icon) {
     background: var(--section-accent);
     transition: background-color 1.5s ease-in-out;
+  }
+
+  /* Ensure card hover effect matches core services */
+  .service-hero :global(.card) {
+    transition: all 0.3s ease;
+  }
+
+  .service-hero :global(.card:hover) {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+    border-color: rgba(255,255,255,0.2);
+    backdrop-filter: blur(20px);
+    background: rgba(255,255,255,0.05);
+  }
+
+  /* Ensure other sections also have consistent hover effects */
+  .research-details :global(.card:hover),
+  .commitment-section :global(.card:hover) {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+    border-color: rgba(255,255,255,0.2);
+    backdrop-filter: blur(20px);
+    background: rgba(255,255,255,0.05);
   }
 
   .research-details {

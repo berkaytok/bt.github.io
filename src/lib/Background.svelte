@@ -11,6 +11,7 @@
   let mouseY = 0;
   let mouseVelX = 0;
   let mouseVelY = 0;
+  let isFirstMouseMove = true;
   let frameId;
   
   // Cached values for performance
@@ -87,6 +88,16 @@
   function handleMouseMove(e) {
     const newMouseX = e.clientX;
     const newMouseY = e.clientY;
+    
+    // Skip velocity calculation on first mouse move to prevent initial jump
+    if (isFirstMouseMove) {
+      mouseX = newMouseX;
+      mouseY = newMouseY;
+      mouseVelX = 0;
+      mouseVelY = 0;
+      isFirstMouseMove = false;
+      return;
+    }
     
     // Calculate velocity
     mouseVelX = (newMouseX - mouseX) * MOUSE_SMOOTHING;

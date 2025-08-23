@@ -34,11 +34,11 @@
     return () => observer.disconnect();
   });
 
-  // Contact page colors (RockON golden yellow theme)
+  // Contact page colors (vibrant orange theme)
   const contactColors = {
-    primary: '#EDAA25',
-    primaryDark: '#D4941F',
-    accent: '#EDAA25'
+    primary: '#F2B705',
+    primaryDark: '#D49F04',
+    accent: '#F2B705'
   };
 
   function submit() {
@@ -84,5 +84,18 @@
 
   .service-hero :global(.btn.primary:hover) {
     box-shadow: 0 12px 40px color-mix(in srgb, var(--section-primary) 35%, transparent);
+  }
+
+  /* Ensure card hover effect matches core services */
+  .service-hero :global(.card) {
+    transition: all 0.3s ease;
+  }
+
+  .service-hero :global(.card:hover) {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+    border-color: rgba(255,255,255,0.2);
+    backdrop-filter: blur(20px);
+    background: rgba(255,255,255,0.05);
   }
 </style>

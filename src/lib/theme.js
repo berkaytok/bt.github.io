@@ -2,66 +2,66 @@
 export const theme = {
   colors: {
     home: {
-      primary: '#ffffff',
-      point: '#ffffff1a',
-      line: '#ffffff80',
+      primary: '#F23E2E',
+      point: '#F23E2E1a',
+      line: '#F23E2E80',
       gradient: {
-        inner: '#C2BB0009',
-        outer: '#00354726'
+        inner: '#B6E1F220',
+        outer: '#F23E2E08'
       }
     },
     geospatial: {
-      primary: '#005E54',
-      point: '#005E544d',
-      line: '#005E54cc',
+      primary: '#335928',
+      point: '#3359284d',
+      line: '#335928cc',
       gradient: {
-        inner: '#005E5409',
-        outer: '#00354726'
+        inner: '#B6E1F220',
+        outer: '#33592808'
       }
     },
     cinematography: {
-      primary: '#C2BB00',
-      point: '#C2BB004d',
-      line: '#C2BB00cc',
+      primary: '#F2B705',
+      point: '#F2B7054d',
+      line: '#F2B705cc',
       gradient: {
-        inner: '#C2BB0009',
-        outer: '#00354726'
+        inner: '#B6E1F220',
+        outer: '#F2B70508'
       }
     },
     agriculture: {
-      primary: '#E1523D',
-      point: '#E1523D4d',
-      line: '#E1523Dcc',
+      primary: '#F2B077',
+      point: '#F2B0774d',
+      line: '#F2B077cc',
       gradient: {
-        inner: '#E1523D09',
-        outer: '#00354726'
+        inner: '#B6E1F220',
+        outer: '#F2B07708'
       }
     },
     inspections: {
-      primary: '#ED8B16',
-      point: '#ED8B164d',
-      line: '#ED8B16cc',
+      primary: '#6B7280',
+      point: '#6B72804d',
+      line: '#6B7280cc',
       gradient: {
-        inner: '#ED8B1609',
-        outer: '#00354726'
+        inner: '#B6E1F220',
+        outer: '#6B728008'
       }
     },
     research: {
-      primary: '#005E54',
-      point: '#005E544d',
-      line: '#005E54cc',
+      primary: '#2B4025',
+      point: '#2B40254d',
+      line: '#2B4025cc',
       gradient: {
-        inner: '#005E5409',
-        outer: '#00354726'
+        inner: '#B6E1F220',
+        outer: '#2B402508'
       }
     },
     contact: {
-      primary: '#C2BB00',
-      point: '#C2BB004d',
-      line: '#C2BB00cc',
+      primary: '#F27405',
+      point: '#F274054d',
+      line: '#F27405cc',
       gradient: {
-        inner: '#C2BB0009',
-        outer: '#E1523D26'
+        inner: '#B6E1F220',
+        outer: '#F2740508'
       }
     }
   }

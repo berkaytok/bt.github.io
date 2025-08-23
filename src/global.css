@@ -1,6 +1,6 @@
 :root {
   /* Tangerine Color Theme */
-  --bg: #003547;           /* darkest - deep teal */
+  --bg: #002027;           /* darker blue-teal */
   --panel: #1c1c1e;        /* dark gray panel */
   --card: #1c1c1e;         /* match panel */
 
@@ -12,15 +12,19 @@
   --tangerine-5: #ED8B16;  /* orange */
 
   /* Primary accent colors */
-  --accent: #C2BB00;       /* yellow-green */
-  --accent-light: #E1523D; /* red-orange */
-  --accent-bright: #ED8B16; /* orange */
-  --accent-dark: #005E54;  /* medium teal */
-  --accent-darker: #003547; /* dark teal */
+  --accent: #F2B705;       /* golden yellow */
+  --accent-light: #F27405; /* vibrant orange */
+  --accent-bright: #F23E2E; /* coral red */
+  --accent-dark: #F2B077;  /* light peach */
+  --accent-darker: #B6E1F2; /* light blue */
+
+  /* Green colors */
+  --green-primary: #335928; /* forest green */
+  --green-dark: #2B4025;    /* dark forest green */
 
   /* Secondary colors */
-  --secondary: #E1523D;    /* red-orange */
-  --secondary-light: #ED8B16; /* orange */
+  --secondary: #F27405;    /* vibrant orange */
+  --secondary-light: #F2B077; /* light peach */
   --tertiary: #C2BB00;     /* yellow-green */
   --quaternary: #005E54;   /* medium teal */
   --quinary: #003547;      /* dark teal */
@@ -446,30 +450,30 @@ a { color: var(--accent); text-decoration: none; }
 }
 
 .btn.primary {
-  background: var(--secondary);
+  background: var(--green-primary);
   color: var(--text-primary);
-  border: 1px solid var(--secondary);
-  box-shadow: 0 8px 32px rgba(181, 101, 29, 0.25);
+  border: 1px solid var(--green-primary);
+  box-shadow: 0 8px 32px rgba(51, 89, 40, 0.25);
 }
 
 .btn.primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(181, 101, 29, 0.35);
+  box-shadow: 0 12px 40px rgba(51, 89, 40, 0.35);
   color: var(--text-primary);
 }
 
 .btn.secondary {
-  background: var(--accent-dark);
+  background: var(--green-dark);
   color: var(--text-primary);
-  border: 1px solid var(--accent-dark);
-  box-shadow: 0 8px 32px rgba(26, 52, 9, 0.25);
+  border: 1px solid var(--green-dark);
+  box-shadow: 0 8px 32px rgba(43, 64, 37, 0.25);
 }
 
 .btn.secondary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(26, 52, 9, 0.35);
+  box-shadow: 0 12px 40px rgba(43, 64, 37, 0.35);
   color: var(--text-primary);
-  border-color: var(--accent);
+  border-color: var(--green-primary);
 }
 
 .btn.large {

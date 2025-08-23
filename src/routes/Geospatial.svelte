@@ -40,11 +40,11 @@
     return () => observer.disconnect();
   });
 
-  // Geospatial page colors (RockON golden yellow theme)
+  // Geospatial page colors (forest green theme)
   const geospatialColors = {
-    primary: '#EDAA25',
-    primaryDark: '#D4941F',
-    accent: '#EDAA25'
+    primary: '#B6E1F2',
+    primaryDark: '#90C4D8',
+    accent: '#B6E1F2'
   };
 
   function go(to) { location.hash = `#/${to}`; }
@@ -127,5 +127,18 @@
   .service-hero :global(.capability-icon) {
     background: var(--section-accent);
     transition: background-color 1.5s ease-in-out;
+  }
+
+  /* Ensure card hover effect matches core services */
+  .service-hero :global(.card) {
+    transition: all 0.3s ease;
+  }
+
+  .service-hero :global(.card:hover) {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+    border-color: rgba(255,255,255,0.2);
+    backdrop-filter: blur(20px);
+    background: rgba(255,255,255,0.05);
   }
 </style>

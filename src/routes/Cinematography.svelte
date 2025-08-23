@@ -40,11 +40,11 @@
     return () => observer.disconnect();
   });
 
-  // Cinematography page colors (RockON burnt orange theme)
+  // Cinematography page colors (golden yellow theme)
   const cinematographyColors = {
-    primary: '#C43302',
-    primaryDark: '#A42B02',
-    accent: '#C43302'
+    primary: '#2B4025',
+    primaryDark: '#1F2E1B',
+    accent: '#2B4025'
   };
 
   function go(to) { location.hash = `#/${to}`; }
@@ -127,5 +127,18 @@
   .service-hero :global(.capability-icon) {
     background: var(--section-accent);
     transition: background-color 1.5s ease-in-out;
+  }
+
+  /* Ensure card hover effect matches core services */
+  .service-hero :global(.card) {
+    transition: all 0.3s ease;
+  }
+
+  .service-hero :global(.card:hover) {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+    border-color: rgba(255,255,255,0.2);
+    backdrop-filter: blur(20px);
+    background: rgba(255,255,255,0.05);
   }
 </style>
