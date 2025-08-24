@@ -36,7 +36,7 @@
   const MOUSE_SMOOTHING = 0.85;
   const MOUSE_FORCE = 8;
   const DISMANTLING_FORCE = 10;
-  const RESTORATION_FORCE = 0.0001;
+  const RESTORATION_FORCE = 0.000001;
   const MAX_DISPLACEMENT = 600;
   
   // --- Physics Constants ---
