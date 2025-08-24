@@ -233,6 +233,23 @@
       point.x += point.vx;
       point.y += point.vy;
       
+      // Boundary collision detection - bounce off canvas edges
+      if (point.x <= POINT_RADIUS) {
+        point.x = POINT_RADIUS;
+        point.vx = Math.abs(point.vx);
+      } else if (point.x >= canvasWidth - POINT_RADIUS) {
+        point.x = canvasWidth - POINT_RADIUS;
+        point.vx = -Math.abs(point.vx);
+      }
+      
+      if (point.y <= POINT_RADIUS) {
+        point.y = POINT_RADIUS;
+        point.vy = Math.abs(point.vy);
+      } else if (point.y >= canvasHeight - POINT_RADIUS) {
+        point.y = canvasHeight - POINT_RADIUS;
+        point.vy = -Math.abs(point.vy);
+      }
+      
       // Limit maximum displacement from sphere
       const distFromTarget = Math.sqrt(
         (point.x - point.targetX) ** 2 + (point.y - point.targetY) ** 2
