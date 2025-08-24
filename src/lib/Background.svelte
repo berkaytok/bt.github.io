@@ -26,7 +26,7 @@
   const NUM_POINTS = 100;
   const POINT_RADIUS = 3;
   const CONNECTION_DISTANCE = 200;
-  const MAX_CONNECTIONS_PER_PARTICLE = 3; // Limit connections for performance
+  const MAX_CONNECTIONS_PER_PARTICLE = 5; // Limit connections for performance
   const MOUSE_INFLUENCE_RADIUS = 100;
   const MOUSE_SMOOTHING = 0.9;
   const MOUSE_FORCE = 0.5;
@@ -35,8 +35,8 @@
   const DAMPING_FACTOR = 0.98; // Stronger damping for stability
   
   // Visual constants
-  const LINE_WIDTH = 0.9;
-  const GRADIENT_RADIUS_MULTIPLIER = 0.8;
+  const LINE_WIDTH = 0.1;
+  const GRADIENT_RADIUS_MULTIPLIER = 0.5;
 
   // Cache colors when route changes
   $: cachedColors = getSectionColors(currentRoute);
@@ -178,29 +178,45 @@
       ctx.fill();
     });
 
-    // Draw connecting lines with limited connections per particle
+    // First pass: count connections for each particle
+    const connections = [];
+    const connectionCounts = new Array(points.length).fill(0);
+    
     for (let i = 0; i < points.length; i++) {
       const p1 = points[i];
-      let connectionCount = 0;
+      let particleConnections = 0;
       
-      for (let j = i + 1; j < points.length && connectionCount < MAX_CONNECTIONS_PER_PARTICLE; j++) {
+      for (let j = i + 1; j < points.length && particleConnections < MAX_CONNECTIONS_PER_PARTICLE; j++) {
         const p2 = points[j];
         const dx = p1.x - p2.x;
         const dy = p1.y - p2.y;
-        const dist = Math.sqrt(dx * dx + dy * dy); // Simplified distance calc
+        const dist = Math.sqrt(dx * dx + dy * dy);
 
         if (dist < CONNECTION_DISTANCE) {
-          // Simplified straight line drawing for performance
-          ctx.lineWidth = LINE_WIDTH;
-          ctx.beginPath();
-          ctx.moveTo(p1.x, p1.y);
-          ctx.lineTo(p2.x, p2.y); // Direct line instead of curve
-          ctx.strokeStyle = cachedColors.line;
-          ctx.stroke();
-          connectionCount++;
+          connections.push({ i, j, dist });
+          connectionCounts[i]++;
+          connectionCounts[j]++;
+          particleConnections++;
         }
       }
     }
+
+    // Second pass: draw lines with thickness based on connection counts
+    connections.forEach(({ i, j }) => {
+      const p1 = points[i];
+      const p2 = points[j];
+      
+      // Calculate line thickness based on the sum of both particles' connection counts
+      const combinedConnections = connectionCounts[i] + connectionCounts[j];
+      const thickness = LINE_WIDTH + (combinedConnections * 0.1); // Base thickness + scaling factor
+      
+      ctx.lineWidth = thickness;
+      ctx.beginPath();
+      ctx.moveTo(p1.x, p1.y);
+      ctx.lineTo(p2.x, p2.y);
+      ctx.strokeStyle = cachedColors.line;
+      ctx.stroke();
+    });
 
     // Reset composite operation
     ctx.globalCompositeOperation = 'source-over';

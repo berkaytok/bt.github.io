@@ -5,10 +5,12 @@
     title: 'Infrastructure Inspections',
     intro: 'Detailed inspections (roof, tower, solar, powerline) using high-res and thermal imaging, with annotated reports.',
     capabilities: [
-      'High-resolution imagery & thermal overlay',
-      'Annotated deliverable reports with geotags',
-      'Safety-first flight procedures and checklists',
-      'Multi-spectral asset condition monitoring'
+      'Thermal & RGB dual-sensor inspection: roofs, solar panels, power lines',
+      'Infrastructure condition assessment: towers, bridges, industrial facilities',
+      'Detailed inspection reports with GPS coordinates & damage classification',
+      'Preventive maintenance planning & asset lifecycle monitoring',
+      'Safety compliance documentation & regulatory reporting',
+      'Custom inspection workflows for insurance & engineering firms'
     ]
   };
 
