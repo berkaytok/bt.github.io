@@ -33,15 +33,15 @@
   
   // --- Mouse Interaction ---
   const MOUSE_INFLUENCE_RADIUS = 200;
-  const MOUSE_SMOOTHING = 0.85;
-  const MOUSE_FORCE = 8;
-  const DISMANTLING_FORCE = 10;
-  const RESTORATION_FORCE = 0.000001;
+  const MOUSE_SMOOTHING = 0.82;
+  const MOUSE_FORCE = 4;
+  const DISMANTLING_FORCE = 120;
+  const RESTORATION_FORCE = 0.0001;
   const MAX_DISPLACEMENT = 600;
   
   // --- Physics Constants ---
   const DAMPING_FACTOR = 0.92;
-  const VELOCITY_DAMPING = 0.96;
+  const VELOCITY_DAMPING = 0.94;
   
   // --- Visual Constants ---
   const LINE_WIDTH = 1.2;
@@ -207,14 +207,15 @@
       const dist = Math.sqrt(dx * dx + dy * dy);
       
       if (dist < MOUSE_INFLUENCE_RADIUS && mouseInfluenceStrength > 0.1) {
-        // Dismantle effect - push points away from mouse
+        // Collection effect - attract points toward mouse
         const influence = (1 - dist / MOUSE_INFLUENCE_RADIUS) * mouseInfluenceStrength;
-        const forceX = (dx / dist) * influence * DISMANTLING_FORCE * -1; // Negative to push away
-        const forceY = (dy / dist) * influence * DISMANTLING_FORCE * -1;
+        const attractionStrength = influence * MOUSE_FORCE;
+        const forceX = (dx / dist) * attractionStrength; // Positive to pull toward mouse
+        const forceY = (dy / dist) * attractionStrength;
         
         point.vx += forceX;
         point.vy += forceY;
-        point.displacement = Math.min(point.displacement + influence * 2, 1);
+        point.displacement = Math.min(point.displacement + influence * 1.5, 1);
       } else {
         // Restoration force - pull points back to sphere
         const restoreX = (point.targetX - point.x) * RESTORATION_FORCE;
