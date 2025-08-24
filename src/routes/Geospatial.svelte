@@ -5,12 +5,10 @@
     title: 'Geospatial Data Science & GIS',
     intro: 'Drone-based remote sensing, orthomosaic generation, NDVI & multispectral processing, mapping, and ML analysis.',
     capabilities: [
-      'GIS analysis, spatial modeling & cartographic visualization',
-      'Remote sensing workflows: multispectral, hyperspectral, LiDAR',
-      'Deep learning pipelines for object detection & classification',
-      'Interactive dashboards & geospatial web applications',
-      'Time-series analysis & change detection algorithms',
-      'Custom ML models for land cover & feature extraction'
+      'Multispectral sensors & NDVI/NDRE processing',
+      'Orthomosaic and DSM/DTM generation',
+      'Crop prescription maps, variability analysis',
+      'Custom ML workflows for classification & detection'
     ]
   };
 

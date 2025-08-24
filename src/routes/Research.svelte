@@ -5,12 +5,10 @@
     title: 'Research & Academic Collaboration',
     intro: 'Supporting academic institutions with rigorous research methodologies, advanced data analysis, and scientific excellence.',
     capabilities: [
-      'Experimental design & statistical methodology consulting',
-      'Machine learning & AI implementation for research applications',
-      'Grant writing support & funding strategy development',
-      'Publication-ready data visualization & scientific reporting',
-      'Research infrastructure: cloud computing & data management',
-      'Interdisciplinary collaboration facilitation & project coordination'
+      'Research methodology consulting & design',
+      'Advanced statistical analysis & interpretation',
+      'Academic project management & coordination',
+      'Research technology integration & implementation'
     ]
   };
 

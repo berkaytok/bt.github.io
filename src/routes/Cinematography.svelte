@@ -5,12 +5,10 @@
     title: 'Aerial Cinematography',
     intro: 'High-end aerial movie work: stabilized cinematic platforms, FPV acro for dynamic scenes, and end-to-end production delivery.',
     capabilities: [
-      'Sony ZV-E10II cinelifter platforms for 10 bit 4:2:2 SLOG3 capture',
-      'Cinewhoop specialists for interior & tight-space cinematography',
-      'Advanced FPV piloting: acrobatics, proximity flying, dynamic tracking',
-      'Full post-production: color grading, editing, sound design',
-      'Multi-format delivery: 4K ProRes, H.264/265, decoding and encoding broadcast standards',
-      'Custom cinema rigs & specialized gimbal configurations'
+      'Cinematic gimballed platforms & 10-bit 4:2:2 log footage capture',
+      'FPV acrobatic sequences for dynamic shots',
+      'Cinelifters and cinewhoops for specialized filming',
+      'Color grading and deliverables for broadcast'
     ]
   };
 

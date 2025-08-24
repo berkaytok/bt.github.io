@@ -5,12 +5,10 @@
     title: 'Agricultural Drone Services',
     intro: 'Spraying, seeding, prescription mapping, and frequent crop scouting workflows to accelerate farm decisions.',
     capabilities: [
-      'Precision spraying: autonomous crop protection & fertilizer application',
-      'Multispectral crop health analysis: NDVI, NDRE, stress detection',
-      'Variable rate prescription mapping for optimized field management',
-      'High-frequency monitoring: growth tracking & yield prediction',
-      'Soil analysis integration: moisture, nutrient, compaction mapping',
-      'Custom agricultural ML models for disease & pest identification'
+      'Autonomous spraying & targeted application',
+      'Prescription maps for variable rate operations',
+      'Frequent flights for time-series monitoring',
+      'High resolution vegetation indices, rain or shine!'
     ]
   };
 
